@@ -39,19 +39,22 @@
                         <th>Marca</th>
                         <th>Quantidade</th>
                         <th>Preço Unitário</th>
+                        <th>Editar/Remover</th>
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>teste</td>
-                    <td>teste2</td>
+                <tr ng-repeat="i in listatemp">
+                    <td>{_ i.nome _}</td>
+                    <td>{_ i.marca _}</td>
+                    <td>{_ i.quantidade _}</td>
+                    <td>{_ i.preco _}</td>
                     <td>
                         <button class="btn btn-warning" title="Editar Item"
-                                ng-click="editarProduto(item)">
+                                ng-click="editarProduto($index)">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                         <button class="btn btn-danger" title="Remover Item"
-                                ng-click="removerProduto(item)">
+                                ng-click="removerProduto($index)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </td>

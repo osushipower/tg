@@ -4,7 +4,7 @@ app.config(function ($interpolateProvider) {
     $interpolateProvider.endSymbol('_}');
 });
 
-function controller($scope, $http) {
+function NiceController($scope, $http) {
     $scope.produtos = [
         {"nome": "pacoca", "marca": "pacoquita"},
         {"nome": "creme-dental", "marca": "colgate"}
@@ -15,8 +15,17 @@ function controller($scope, $http) {
 
     $scope.adicionarProduto = function (index) {
 
-        $scope.listatemp.push(index);
+        $scope.listatemp.push($scope.produtos[index]);
 
-    }
+    };
+
+    $scope.editarProduto = function(index) {
+        index.editando = true;
+    };
+
+    $scope.removerProduto = function(index) {
+        $scope.listatemp.splice(index, 1);
+    };
+
 
 }
