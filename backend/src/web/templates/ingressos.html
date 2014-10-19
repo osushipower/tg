@@ -1,0 +1,241 @@
+{% extends 'templates/base.html' %}
+
+{% block main %}
+<div class="row clearfix">
+    <div class="col-md-12 column">
+        <h2>Tickets Navigator</h2>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="minhaCollapse">
+                        Lollapalooza Brazil - May 5th-6th
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <img src="/static/img/lolla.png" alt="Logo Lollapalooza" title="Logo Lollapalooza" class="img-rounded"
+                         width="140" height="140">
+
+                    <p class="paragraph">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                        richardson ad squid. 3 wolf moon
+                        officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
+                        3
+                        wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad
+                        vegan
+                        excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                        nesciunt
+                        you probably haven't heard of them accusamus labore sustainable VHS.
+
+                        <br /><br />
+                        <strong>Price:</strong>
+                        <br />
+                        2 days - R$540,0 (FULL), R$270,00 (HALF - Students)
+                        <br />
+                    </p>
+                    <div style="text-align: right">
+                        <button type="button" class="btn btn-default "><span
+                                class="glyphicon glyphicon-star"></span> Fav
+                        </button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modal1"><span
+                                class="glyphicon glyphicon-info-sign"></span> More Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL 1 -->
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModal1Label"><img src="/static/img/logo.png" height="40" width="40">
+                            More Info</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div style="text-align: center">
+                        <img align="center "src="/static/img/lolla.png" alt="Logo Lollapalooza" title="Logo Lollapalooza" class="img-rounded"
+                         width="100" height="100">
+                        </div>
+                        <p align="center"><small>Lollapalooza Brazil - May 5th-6th</small></p>
+
+                        <h4><strong>About:</strong></h4>
+                        <p>This website was developed as a homework for the <strong>Scripts
+                        Programming</strong> discipline of the <strong>Technology College of Sao
+                        Jose dos Campos(Fatec-SJC)</strong>.
+                        Even though the website is not 100% real, the purpose was to decide a theme
+                        and develop from it.</p>
+                        <h4><strong>About the Theme</strong></h4>
+                        <p>The Chosen theme is a Online store that centralizes the sales of Concert
+                        tickets of a specified country, summing up it would sell
+                        tickets of any event in that country, no matter if the it is of a very-known
+                        band or not.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" >
+                        Super Bowl 2014 - Feb 2th
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <img src="/static/img/superbowl.jpg" alt="Logo Super Bowl" title="Logo Super Bowl" class="img-rounded"
+                         width="140" height="140">
+
+                    <p class="paragraph">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                        richardson ad squid. 3 wolf moon
+                        officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
+                        3
+                        wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad
+                        vegan
+                        excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                        nesciunt
+                        you probably haven't heard of them accusamus labore sustainable VHS.
+
+                        <br /><br />
+                        <strong>Price:</strong>
+                        $2125,00 - UPPR LVL EZ/CORNER
+                    </p>
+                    <div style="text-align: right">
+                        <button type="button" class="btn btn-default "><span
+                                class="glyphicon glyphicon-star"></span> Fav
+                        </button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modal2"><span
+                                class="glyphicon glyphicon-info-sign"></span> More Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL 2 -->
+        <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModal2Label"><img src="/static/img/logo.png" height="40" width="40">More Info</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div style="text-align: center">
+                        <img align="center "src="/static/img/superbowl.jpg" alt="Logo Lollapalooza" title="Logo Lollapalooza" class="img-rounded"
+                         width="100" height="100">
+                        </div>
+                        <p align="center"><small>Super Bowl 2014 - Feb 2th</small></p>
+
+                        <h4><strong>About:</strong></h4>
+                        <p>This website was developed as a homework for the <strong>Scripts
+                        Programming</strong> discipline of the <strong>Technology College of Sao
+                        Jose dos Campos(Fatec-SJC)</strong>.
+                        Even though the website is not 100% real, the purpose was to decide a theme
+                        and develop from it.</p>
+                        <h4><strong>About the Theme</strong></h4>
+                        <p>The Chosen theme is a Online store that centralizes the sales of Concert
+                        tickets of a specified country, summing up it would sell
+                        tickets of any event in that country, no matter if the it is of a very-known
+                        band or not.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                        Rocknbeats: The Killers - Mar 22nd
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <img src="/static/img/rocknbeats.jpg" alt="Logo Rocknbeats" title="Logo Rocknbeats" class="img-rounded"
+                         width="140" height="140">
+
+                    <p class="paragraph">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                        richardson ad squid. 3 wolf moon
+                        officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch
+                        3
+                        wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                        Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad
+                        vegan
+                        excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                        nesciunt
+                        you probably haven't heard of them accusamus labore sustainable VHS.
+
+                        <br /><br />
+                        <strong>Price:</strong>
+                        $25,00
+                    </p>
+                    <div style="text-align: right">
+                        <button type="button" class="btn btn-default "><span
+                                class="glyphicon glyphicon-star"></span> Fav
+                        </button>
+                        <button class="btn btn-default" data-toggle="modal" data-target="#modal3"><span
+                                class="glyphicon glyphicon-info-sign"></span> More Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- MODAL 3 -->
+        <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModal3Label"><img src="/static/img/logo.png" height="40" width="40">More Info</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div style="text-align: center">
+                        <img align="center "src="/static/img/rocknbeats.jpg" alt="Logo Lollapalooza" title="Logo Lollapalooza" class="img-rounded"
+                         width="100" height="100">
+                        </div>
+                        <p align="center"><small>Rocknbeats: The Killers - Mar 22nd</small></p>
+
+                        <h4><strong>About:</strong></h4>
+                        <p>This website was developed as a homework for the <strong>Scripts
+                        Programming</strong> discipline of the <strong>Technology College of Sao
+                        Jose dos Campos(Fatec-SJC)</strong>.
+                        Even though the website is not 100% real, the purpose was to decide a theme
+                        and develop from it.</p>
+                        <h4><strong>About the Theme</strong></h4>
+                        <p>The Chosen theme is a Online store that centralizes the sales of Concert
+                        tickets of a specified country, summing up it would sell
+                        tickets of any event in that country, no matter if the it is of a very-known
+                        band or not.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

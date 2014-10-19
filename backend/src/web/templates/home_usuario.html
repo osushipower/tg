@@ -1,0 +1,65 @@
+{% extends 'templates/base_usuario.html' %}
+
+{% block main %}
+
+<div class="row clearfix">
+    <div class="col-md-12 column">
+
+        <form role="form">
+            <div class="form-group">
+                <input class="form-control" ng-model="search" title="Busca Produto"
+                       placeholder="Comece pesquisando por um produto :)">
+            </div>
+        </form>
+        <div ng-show="search.length >= 1">
+            <table class="table table-striped">
+                <tbody>
+                <tr ng-repeat="p in produtos | filter: search">
+                    <td>{_ p.nome _}</td>
+                    <td>{_ p.marca _}</td>
+                    <td>
+                        <button class="btn btn-success" title="Adicionar"
+                                ng-click="adicionarProduto($index)">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br/>
+        </div>
+
+        <h1>Itens na Lista: </h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome Produto</th>
+                        <th>Marca</th>
+                        <th>Quantidade</th>
+                        <th>Preço Unitário</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>teste</td>
+                    <td>teste2</td>
+                    <td>
+                        <button class="btn btn-warning" title="Editar Item"
+                                ng-click="editarProduto(item)">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button class="btn btn-danger" title="Remover Item"
+                                ng-click="removerProduto(item)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
