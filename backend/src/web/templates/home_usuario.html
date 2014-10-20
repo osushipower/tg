@@ -2,8 +2,9 @@
 
 {% block main %}
 
-<div class="row clearfix">
-    <div class="col-md-12 column">
+<div class="container">
+    <div class="col-md-12 column" style="background-color: #ffffff">
+        <br/>
 
         <form role="form">
             <div class="form-group">
@@ -13,8 +14,14 @@
         </form>
         <div ng-show="search.length >= 1">
             <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Nome Produto</th>
+                    <th>Marca</th>
+                </tr>
+                </thead>
                 <tbody>
-                <tr ng-repeat="p in produtos | filter: search">
+                <tr ng-repeat="p in produtos | filter: search track by $id(p)">
                     <td>{_ p.nome _}</td>
                     <td>{_ p.marca _}</td>
                     <td>
@@ -28,19 +35,20 @@
             </table>
             <br/>
         </div>
+        <br/>
 
-        <h1>Itens na Lista: </h1>
+        <h3>Itens na Lista: </h3>
 
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>Nome Produto</th>
-                        <th>Marca</th>
-                        <th>Quantidade</th>
-                        <th>Preço Unitário</th>
-                        <th>Editar/Remover</th>
-                    </tr>
+                <tr>
+                    <th>Nome</th>
+                    <th>Marca</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário</th>
+                    <th>Editar/Remover</th>
+                </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="i in listatemp">
@@ -62,6 +70,18 @@
                 </tbody>
             </table>
         </div>
+        <br/>
+
+        <form role="form">
+            <div class="form-group" align="center">
+                <button type="submit" class="btn btn-success" title="Salvar Lista"><span
+                        class="glyphicon glyphicon-floppy-disk"></span> Salvar Lista
+                </button>
+            </div>
+        </form>
+
+        <br/>
+
     </div>
 </div>
 

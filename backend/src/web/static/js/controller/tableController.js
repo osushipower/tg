@@ -14,9 +14,7 @@ function NiceController($scope, $http) {
     $scope.search = "";
 
     $scope.adicionarProduto = function (index) {
-
         $scope.listatemp.push($scope.produtos[index]);
-
     };
 
     $scope.editarProduto = function(index) {
