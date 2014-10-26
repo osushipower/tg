@@ -1,0 +1,46 @@
+{% extends 'templates/base_usuario.html' %}
+
+{% block main %}
+
+<div class="container">
+    <div class="col-md-12 column" style="background-color: #ffffff">
+        <div class="row">
+            <div class="col-md-6 column" style="background-color: #ffffff">
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nome Produto</th>
+                        <th>Marca</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="p in produtos | filter: search track by $id(p)">
+                        <td>{_ p.nome _}</td>
+                        <td>{_ p.marca _}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+            <div class="col-md-6" style="background-color: #ffffff">
+                <h3>Cadastrar novo Produto: </h3>
+                <form role="form">
+                    <div class="form-group">
+                        <input class="form-control" title="Nome"
+                               placeholder="Nome do Produto" ng-model="inputNome">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" title="Marca"
+                               placeholder="Marca do Produto" ng-model="inputMarca">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" type="submit" ng-click="cadastrarProduto()"><span class="glyphicon glyphicon-ok"></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -5,10 +5,7 @@ app.config(function ($interpolateProvider) {
 });
 
 function NiceController($scope, $http) {
-    $scope.produtos = [
-        {"nome": "pacoca", "marca": "pacoquita"},
-        {"nome": "creme-dental", "marca": "colgate"}
-    ];
+    $scope.produtos = [];
     $scope.listatemp = [];
     $scope.listasuser = [];
     $scope.search = "";
@@ -25,5 +22,16 @@ function NiceController($scope, $http) {
         $scope.listatemp.splice(index, 1);
     };
 
+    $scope.cadastrarProduto = function() {
+        var produto = {
+            "nome": $scope.inputNome,
+            "marca": $scope.inputMarca
+        };
+        console.log(produto)
+        $http.post('/admin/rest/salvar', produto).success(function(json){
 
+            produto.id = json.id;
+            $scope.produtos.push(produto)
+        });
+    }
 }
