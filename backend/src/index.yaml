@@ -35,6 +35,13 @@ indexes:
   - name: password
     direction: desc
 
+- kind: Produto
+  properties:
+  - name: nome
+    direction: desc
+  - name: marca
+    direction: desc
+
 - kind: Usuario
   properties:
   - name: firstname

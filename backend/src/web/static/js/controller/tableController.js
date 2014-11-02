@@ -6,6 +6,10 @@ app.config(function ($interpolateProvider) {
 
 function NiceController($scope, $http) {
     $scope.produtos = [];
+    $http.post('/admin/rest/listar').success(function(json){
+        $scope.produtos = json || [];
+    });
+
     $scope.listatemp = [];
     $scope.listasuser = [];
     $scope.search = "";
@@ -34,4 +38,10 @@ function NiceController($scope, $http) {
             $scope.produtos.push(produto)
         });
     }
+
+    $scope.removerElemento = function(produto, index){
+        $scope.produtos.splice(index, 1);
+        $http.post('/admin/rest/remover', {"idProduto": produto.id});
+    }
+
 }

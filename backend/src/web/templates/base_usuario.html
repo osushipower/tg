@@ -45,7 +45,16 @@
                     <li><a href="#">Profile</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Login</a></li>
+                    {% if _usuario_logado %}
+
+                    <a href="{{ _logout_url }}" class="btn btn-info" style="padding: 5px 5px 5px 5px">Hello, {{
+                        _usuario_logado.firstname }} (Logout)</a>
+
+                    {% else %}
+
+                    <a href="{{ _login_url }}" class="btn btn-success" style="padding: 5px 5px 5px 5px">Login</a>
+
+                    {% endif %}
                 </ul>
             </div>
         </nav>

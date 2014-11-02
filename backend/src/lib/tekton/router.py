@@ -3,7 +3,7 @@ import importlib
 import inspect
 import urllib
 
-__author__ = 'renzo'
+__author__ = 'eduardo'
 
 
 class PathNotFound(Exception): pass

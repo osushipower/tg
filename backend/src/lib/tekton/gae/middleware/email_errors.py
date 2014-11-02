@@ -38,7 +38,7 @@ def send_error_to_admins(exception, handler, write_tmpl):
     logging.error(errmsg)
     logging.error(tb)
     write_tmpl('templates/error.html')
-    '''appid = app_identity.get_application_id()
+    appid = app_identity.get_application_id()
 
     subject = 'ERROR in %s: [%s] %s' % (appid, handler.request.path, errmsg)
     body = """
@@ -61,7 +61,7 @@ def send_error_to_admins(exception, handler, write_tmpl):
     body += 'API statuses = ' + json.dumps(get_apis_statuses(exception), indent=4)
     mail.send_mail_to_admins(sender=settings.SENDER_EMAIL,
                              subject=subject,
-                             body=body)'''
+                             body=body)
 
 
 def execute(next_process, handler, dependencies, **kwargs):
