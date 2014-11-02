@@ -35,7 +35,9 @@ def execute(next_process, handler, dependencies, **kwargs):
         next_process(dependencies, **kwargs)
     except PathNotFound, e:
         handler.response.set_status(404)
+        write_tmpl('templates/error.html')
 
     except BaseException, e:
         handler.response.status_code = 400
+        write_tmpl('templates/error.html')
    
