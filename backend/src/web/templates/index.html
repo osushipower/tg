@@ -31,12 +31,12 @@
 
         {% if _usuario_logado %}
 
-        <a href="{{ _logout_url }}" class="btn btn-info" style="padding: 5px 5px 5px 5px">Hello, {{
+        <a href="{{ _logout_url }}" class="btn btn-info">Hello, {{
             _usuario_logado.firstname }} (Logout)</a>
 
         {% else %}
 
-        <a href="{{ _login_url }}" class="btn btn-success" style="padding: 5px 5px 5px 5px">Login</a>
+        <a href="{{ _login_url }}" class="btn btn-success">Login</a>
 
         {% endif %}
 

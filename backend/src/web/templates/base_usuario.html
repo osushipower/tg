@@ -47,12 +47,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     {% if _usuario_logado %}
 
-                    <a href="{{ _logout_url }}" class="btn btn-info" style="padding: 5px 5px 5px 5px">Hello, {{
-                        _usuario_logado.firstname }} (Logout)</a>
+                    <li style="color: green">
+                    <a href="{{ _logout_url }}">Hello, {{
+                        _usuario_logado.firstname }} (Logout)</a></li>
 
                     {% else %}
-
-                    <a href="{{ _login_url }}" class="btn btn-success" style="padding: 5px 5px 5px 5px">Login</a>
+                     <li style="color: green">
+                    <a href="{{ _login_url }}">Login</a></li>
 
                     {% endif %}
                 </ul>

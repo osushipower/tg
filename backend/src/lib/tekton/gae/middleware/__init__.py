@@ -12,6 +12,3 @@ def execute(midlewares, handler, dependencies=None, **kwargs):
             execute(next_middlewares, handler, dependencies, **kwargs)
 
         current_middleware(next_process, handler, dependencies, **kwargs)
-
-
-
