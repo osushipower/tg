@@ -3,8 +3,8 @@ from mock.mock import Mock
 from web import home
 from web import about
 from web import tickets
-from web.usuario import rest
-from web.usuario.rest import Usuario
+from usuario import rest
+from usuario.rest import Usuario
 
 class TemplateTests(GAETestCase):
 

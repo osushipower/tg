@@ -12,12 +12,13 @@
                     <tr>
                         <th>Nome Produto</th>
                         <th>Marca</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="p in produtos | filter: search track by $id(p)">
-                        <td>{_ p.nome _}</td>
-                        <td>{_ p.marca _}</td>
+                        <td class="filterable-cell">{_ p.nome _}</td>
+                        <td class="filterable-cell">{_ p.marca _}</td>
                         <td>
                             <button class="btn btn-danger" type="submit" ng-click="removerElemento(p, $index)"><span
                                     class="glyphicon glyphicon-remove"></span></button>

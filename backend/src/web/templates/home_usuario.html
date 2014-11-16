@@ -18,15 +18,16 @@
                 <tr>
                     <th>Nome Produto</th>
                     <th>Marca</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="p in produtos | filter: search track by $id(p)">
-                    <td>{_ p.nome _}</td>
-                    <td>{_ p.marca _}</td>
-                    <td>
+                    <td class="filterable-cell">{_ p.nome _}</td>
+                    <td class="filterable-cell">{_ p.marca _}</td>
+                    <td class="filterable-cell">
                         <button class="btn btn-success" title="Adicionar"
-                                ng-click="adicionarProduto($index)">
+                                ng-click="adicionarProdutoListaTemp(p)">
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </td>
@@ -52,17 +53,32 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="i in listatemp">
-                    <td>{_ i.nome _}</td>
-                    <td>{_ i.marca _}</td>
-                    <td>{_ i.quantidade _}</td>
-                    <td>{_ i.preco _}</td>
-                    <td>
+                    <td class="filterable-cell">{_ i.nome _}</td>
+                    <td class="filterable-cell">{_ i.marca _}</td>
+                    <td class="filterable-cell">
+                        <div class="input-group">
+                            <input type="number" min="1" class="form-control input-sm"
+                                   ng-model="inputQuantidade">
+                        </div>
+                    </td>
+                    <td class="filterable-cell">
+                        <div class="input-group">
+                            <input type="number" step="any" min="0" class="form-control input-sm"
+                                   ng-model="inputPreco">
+                        </div>
+                    </td>
+                    <td class="filterable-cell">
+                        <!--
                         <button class="btn btn-warning" title="Editar Item"
-                                ng-click="editarProduto($index)">
+                                ng-click="editarProduto(i)">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
+                        <button class="btn btn-success" title="Salvar Alterações"
+                                            ng-click="confirmarEdicao(i)" ng-show="i.editando">
+								        <i class="glyphicon glyphicon-floppy-disk"></i>
+							        </button> -->
                         <button class="btn btn-danger" title="Remover Item"
-                                ng-click="removerProduto($index)">
+                                ng-click="removerProduto(i)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </td>

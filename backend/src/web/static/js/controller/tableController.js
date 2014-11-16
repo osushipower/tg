@@ -14,16 +14,12 @@ function NiceController($scope, $http) {
     $scope.listasuser = [];
     $scope.search = "";
 
-    $scope.adicionarProduto = function (index) {
-        $scope.listatemp.push($scope.produtos[index]);
+    $scope.editarProduto = function(p) {
+        p.editando = true;
     };
 
-    $scope.editarProduto = function(index) {
-        index.editando = true;
-    };
-
-    $scope.removerProduto = function(index) {
-        $scope.listatemp.splice(index, 1);
+    $scope.removerProduto = function(p) {
+        $scope.listatemp.splice(p, 1);
     };
 
     $scope.cadastrarProduto = function() {
@@ -32,16 +28,26 @@ function NiceController($scope, $http) {
             "marca": $scope.inputMarca
         };
         console.log(produto)
-        $http.post('/admin/rest/salvar', produto).success(function(json){
+        $http.post('/admin/rest/salvar', produto).success(function (json) {
 
             produto.id = json.id;
             $scope.produtos.push(produto)
         });
-    }
+    };
+
+    $scope.adicionarProdutoListaTemp = function (p) {
+        $scope.listatemp.push(p);
+    };
+
+    $scope.salvarLista = function() {
+
+    };
 
     $scope.removerElemento = function(produto, index){
         $scope.produtos.splice(index, 1);
         $http.post('/admin/rest/remover', {"idProduto": produto.id});
-    }
+    };
+
+
 
 }

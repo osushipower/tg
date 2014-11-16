@@ -2,7 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 from google.appengine.api import users
 import tmpl
-from web.usuario.rest import Usuario
+from usuario.model import Usuario
 
 
 def execute(next_process, handler, dependencies, **kwargs):
