@@ -52,19 +52,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="i in listatemp">
+                <tr ng-repeat="i in listatemp track by $index">
                     <td class="filterable-cell">{_ i.nome _}</td>
                     <td class="filterable-cell">{_ i.marca _}</td>
                     <td class="filterable-cell">
                         <div class="input-group">
                             <input type="number" min="1" class="form-control input-sm"
-                                   ng-model="inputQuantidade">
+                                   ng-model="i.quant">
                         </div>
                     </td>
                     <td class="filterable-cell">
                         <div class="input-group">
                             <input type="number" step="any" min="0" class="form-control input-sm"
-                                   ng-model="inputPreco">
+                                   ng-model="i.preco">
                         </div>
                     </td>
                     <td class="filterable-cell">
@@ -90,7 +90,7 @@
 
         <form role="form">
             <div class="form-group" align="center">
-                <button type="submit" class="btn btn-success" title="Salvar Lista"><span
+                <button type="button" class="btn btn-success" ng-click="salvarLista()" title="Salvar Lista"><span
                         class="glyphicon glyphicon-floppy-disk"></span> Salvar Lista
                 </button>
             </div>

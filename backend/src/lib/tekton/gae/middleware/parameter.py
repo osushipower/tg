@@ -19,7 +19,11 @@ def execute(next_process, handler, dependencies, **kwargs):
     header_value = getattr(header_value, 'header_value', None)
     # AngularJS Call
     if header_value == json_header and handler.request.body:
-        kwargs.update(json.loads(handler.request.body))
+    		data = json.loads(handler.request.body)
+    		if not isinstance(data, list):
+    			kwargs.update(data)
+    		else:
+    			kwargs["list"] = data
     else:
         kwargs.update(dict(_extract_values(handler, a) for a in handler.request.arguments()))
     next_process(dependencies, **kwargs)

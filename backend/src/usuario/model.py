@@ -14,4 +14,17 @@ class Usuario(ndb.Model):
 
     @classmethod
     def query_by_google(cls, google_id):
-        return cls.query(cls.google_id==google_id)
+        return cls.query(cls.google_id == google_id)
+
+
+class RUsuarioXLista(ndb.Model):
+    user_key = ndb.KeyProperty()
+    list_key = ndb.KeyProperty()
+
+
+    @classmethod
+    def get_by_user(cls, user_id):
+        user = Usuario.get_by_id(long(user_id))
+        query = cls.query(cls.user_key == user.key)
+
+        return query

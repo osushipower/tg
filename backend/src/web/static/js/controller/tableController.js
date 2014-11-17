@@ -40,14 +40,22 @@ function NiceController($scope, $http) {
     };
 
     $scope.salvarLista = function() {
+    	var data = [];
+    	var length = $scope.listatemp.length;
 
+    	for (var i = 0; i < length; i++){
+    		data[i] = {};
+    		data[i]["id"] = $scope.listatemp[i]["id"];
+    		data[i]["quant"] = $scope.listatemp[i]["quant"];
+    		data[i]["preco"] = $scope.listatemp[i]["preco"];
+    	}
+
+    	$http.post("/admin/rest/salvar_lista", data);
     };
 
     $scope.removerElemento = function(produto, index){
         $scope.produtos.splice(index, 1);
         $http.post('/admin/rest/remover', {"idProduto": produto.id});
     };
-
-
 
 }

@@ -7,3 +7,8 @@ from google.appengine.ext import ndb
 class Produto(ndb.Model):
     nome = ndb.StringProperty()
     marca = ndb.StringProperty()
+
+class RProdutoXLista(ndb.Model):
+    produto = ndb.KeyProperty()
+    preco = ndb.FloatProperty()
+    quant = ndb.IntegerProperty()
