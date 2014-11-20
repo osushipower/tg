@@ -19,7 +19,7 @@ class Usuario(ndb.Model):
 
 class RUsuarioXLista(ndb.Model):
     user_key = ndb.KeyProperty()
-    list_key = ndb.KeyProperty()
+    list_key = ndb.KeyProperty(repeated=True)
 
 
     @classmethod

@@ -1,5 +1,5 @@
 application: projetolistacompras
-version: 1-7-1-alpha
+version: 1-7-2-alpha
 runtime: python27
 api_version: 1
 threadsafe: yes

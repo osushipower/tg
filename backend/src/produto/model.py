@@ -12,3 +12,4 @@ class RProdutoXLista(ndb.Model):
     produto = ndb.KeyProperty()
     preco = ndb.FloatProperty()
     quant = ndb.IntegerProperty()
+    date = ndb.DateTimeProperty(auto_now=True)
