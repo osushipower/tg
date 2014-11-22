@@ -45,9 +45,23 @@ def exibirlistasalvas(_resp):
     _resp.write(listas_bd)
 
 
-def exibirusuarioxlista(_resp):
-    listas_uxl = RUsuarioXLista.query().fetch()
-    _resp.write(listas_uxl)
+def exibirlistasusuario(_resp, _usuario_logado):
+    lista_uxl = []
+    lista_pxl = []
+    lista_keys = []
+    listauser = []
+    tempUxL = RUsuarioXLista.query().fetch()
+    tempPxL = RProdutoXLista.query().fetch()
+    for tul in tempUxL:
+        if tul.user_key == _usuario_logado.key:
+            lista_uxl.append(tul.list_key)
+
+    for tpl in tempPxL:
+        for i in lista_uxl:
+            if tpl.key == i:
+                listauser.append(tpl)
+
+    _resp.write(listauser)
 
 
 def removerlistasalva(_resp, idLista):

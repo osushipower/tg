@@ -12,4 +12,6 @@ class RProdutoXLista(ndb.Model):
     produto = ndb.KeyProperty()
     preco = ndb.FloatProperty()
     quant = ndb.IntegerProperty()
+    precototal = ndb.FloatProperty()
+    localcompra = ndb.StringProperty()
     date = ndb.DateTimeProperty(auto_now=True)
