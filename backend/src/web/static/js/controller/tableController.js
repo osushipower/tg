@@ -11,7 +11,7 @@ function NiceController($scope, $http) {
     });
 
     $scope.listasuser = [];
-    $http.post('/admin/rest/exibirusuarioxlista').success(function (json) {
+    $http.post('/admin/rest/exibirlistasusuario').success(function (json) {
         $scope.listasuser = json || [];
     });
 
@@ -65,7 +65,7 @@ function NiceController($scope, $http) {
             data[i]["quant"] = $scope.listatemp[i]["quant"];
             data[i]["preco"] = $scope.listatemp[i]["preco"];
         }
-        data["precototal"] = parseFloat($scope.precototal);
+        data["total"] = parseFloat($scope.precototal);
         data["localcompra"] = $scope.listatemp["localcompra"];
 
 

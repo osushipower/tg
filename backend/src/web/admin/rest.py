@@ -2,7 +2,7 @@ from __future__ import absolute_import, unicode_literals
 import json
 from produto.model import Produto, RProdutoXLista
 from usuario.model import RUsuarioXLista
-
+from google.appengine.ext import ndb
 
 def salvar(_resp, nome, marca):
     prod = Produto(nome=nome, marca=marca)
@@ -35,6 +35,8 @@ def salvar_lista(_resp, _usuario_logado, *args, **kwargs):
         for item in kwargs[u'list']:
             item['produto'] = Produto.get_by_id(long(item["id"])).key
             item.pop('id')
+            item['autor'] = _usuario_logado.firstname
+            item.pop('autor')
             list_key = RProdutoXLista(**item).put()
             list_keys.append(list_key)
         RUsuarioXLista(user_key=_usuario_logado.key, list_key=list_keys).put()
@@ -46,25 +48,21 @@ def exibirlistasalvas(_resp):
 
 
 def exibirlistasusuario(_resp, _usuario_logado):
-    lista_uxl = []
-    lista_pxl = []
-    lista_keys = []
-    listauser = []
-    tempUxL = RUsuarioXLista.query().fetch()
-    tempPxL = RProdutoXLista.query().fetch()
-    for tul in tempUxL:
-        if tul.user_key == _usuario_logado.key:
-            lista_uxl.append(tul.list_key)
+    tempUxL = RUsuarioXLista.query(RUsuarioXLista.user_key == _usuario_logado.key).fetch()
 
-    for tpl in tempPxL:
-        for i in lista_uxl:
-            if tpl.key == i:
-                listauser.append(tpl)
-
-    _resp.write(listauser)
+    keys = filter(lambda obj: obj.list_key, tempUxL)
+    listauser = ndb.get_multi([key.list_key[0] for key in keys])
+    js = []
+    for obj in listauser:
+        dict = {}
+        dict["list_key"] = obj.list_key.id()
+        dict["user_key"] = obj.user_key.id()
+        js.append(dict)
+    _resp.write(json.dumps(js))
 
 
 def removerlistasalva(_resp, idLista):
     l = RProdutoXLista.get_by_id(int(idLista))
     lu = RUsuarioXLista.get_by_id()
     l.key.delete()
+

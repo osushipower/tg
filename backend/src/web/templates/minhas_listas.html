@@ -9,8 +9,18 @@
         <h3>Minhas Listas: </h3>
         <br/>
 
-        <div ng-repeat="for l in listauser">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
 
+                </thead>
+                <tbody>
+                    <tr ng-repeat="l in listasuser track by $index">
+                        <td>{_ l.datacompra _}</td>
+                        <td>{_ l.localcompra _}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
     </div>
