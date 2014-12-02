@@ -5,22 +5,21 @@
 <div class="container">
     <div class="col-md-12 column" style="background-color: #ffffff">
         <div class="row">
-            <div class="col-md-6 column" style="background-color: #ffffff">
+            <div class="col-md-6 column">
                 <br/>
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Nome Produto</th>
-                        <th>Marca</th>
+                        <th>Estabelecimento:</th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="p in produtos | filter: search track by $id(p)">
-                        <td class="filterable-cell">{_ p.nome _}</td>
-                        <td class="filterable-cell">{_ p.marca _}</td>
+                    <tr ng-repeat="e in estabelecimentos | filter: search track by $id(e)">
+                        <td class="filterable-cell">{_ e.nome _}</td>
                         <td>
-                            <button class="btn btn-danger" type="submit" ng-click="removerElemento(p, $index)"><span
+                            <button class="btn btn-danger" type="submit"
+                                    ng-click="removerEstabelecimento(e, $index)"><span
                                     class="glyphicon glyphicon-remove"></span></button>
                         </td>
                     </tr>
@@ -28,26 +27,30 @@
                 </table>
                 <br/>
             </div>
-            <div class="col-md-6" style="background-color: #ffffff">
-                <h3>Cadastrar novo Produto: </h3>
+
+
+            <div class="col-md-6 column">
+                <h3>Cadastrar Novo Estabelecimento:</h3>
 
                 <form role="form">
                     <div class="form-group">
                         <input class="form-control" title="Nome"
-                               placeholder="Nome do Produto" ng-model="inputNome">
+                               placeholder="Nome do Estabelecimento" ng-model="inputNome">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" title="Marca"
-                               placeholder="Marca do Produto" ng-model="inputMarca">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-success" type="submit" ng-click="cadastrarProduto()"><span
+                        <button class="btn btn-success" type="submit" ng-click="cadastrarEstabelecimento()"><span
                                 class="glyphicon glyphicon-ok"></span></button>
                     </div>
                 </form>
+
+
             </div>
+            <br/>
         </div>
     </div>
+
+
+</div>
 </div>
 
 {% endblock %}

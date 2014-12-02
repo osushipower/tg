@@ -42,18 +42,19 @@
             <div id="navbarCollapse" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/admin/crud">Home</a></li>
+                    <li><a href="/admin/establishment">Estabelecimentos</a></li>
                     <li><a href="/admin/statistics">Estatísticas</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if _usuario_logado %}
 
                     <li style="color: green">
-                    <a href="{{ _logout_url }}">Hello, {{
-                        _usuario_logado.firstname }} (Logout)</a></li>
+                        <a href="{{ _logout_url }}">Hello, {{
+                            _usuario_logado.firstname }} (Logout)</a></li>
 
                     {% else %}
-                     <li style="color: green">
-                    <a href="{{ _login_url }}">Login</a></li>
+                    <li style="color: green">
+                        <a href="{{ _login_url }}">Login</a></li>
 
                     {% endif %}
                 </ul>
@@ -69,6 +70,7 @@
 
 
 </body>
+<!--
 <style>
     body {
         background: url(../static/img/bg-cloud.jpg) no-repeat center center fixed;
@@ -79,9 +81,13 @@
     }
 
 </style>
+-->
 <script type="text/javascript" src="../static/js/jquery.min.js"></script>
 <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../static/js/angular.min.js"></script>
 <script type="text/javascript" src="../static/js/controller/tableController.js"></script>
+<script type="text/javascript" src="../static/js/highcharts.js"></script>
+<script type="text/javascript" src="../static/js/modules/exporting.js"></script>
+<script type="text/javascript" src="../static/js/grafico.js"></script>
 
 </html>

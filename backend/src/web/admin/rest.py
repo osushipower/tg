@@ -1,8 +1,10 @@
 from __future__ import absolute_import, unicode_literals
 import json
 from produto.model import Produto, RProdutoXLista
+from estabelecimento.model import Estabelecimento
 from usuario.model import RUsuarioXLista
 from google.appengine.ext import ndb
+
 
 def salvar(_resp, nome, marca):
     prod = Produto(nome=nome, marca=marca)
@@ -11,7 +13,7 @@ def salvar(_resp, nome, marca):
     _resp.write(json_str)
 
 
-def listar(_resp):
+def listarProdutos(_resp):
     query = Produto.query().order(-Produto.nome, -Produto.marca)
 
     def to_dict(c):
@@ -48,21 +50,38 @@ def exibirlistasalvas(_resp):
 
 
 def exibirlistasusuario(_resp, _usuario_logado):
-    tempUxL = RUsuarioXLista.query(RUsuarioXLista.user_key == _usuario_logado.key).fetch()
-
-    keys = filter(lambda obj: obj.list_key, tempUxL)
-    listauser = ndb.get_multi([key.list_key[0] for key in keys])
-    js = []
-    for obj in listauser:
-        dict = {}
-        dict["list_key"] = obj.list_key.id()
-        dict["user_key"] = obj.user_key.id()
-        js.append(dict)
-    _resp.write(json.dumps(js))
+    tempPxL = RProdutoXLista.query().fetch()
+    _resp.write(tempPxL)
 
 
 def removerlistasalva(_resp, idLista):
     l = RProdutoXLista.get_by_id(int(idLista))
     lu = RUsuarioXLista.get_by_id()
     l.key.delete()
+
+
+def salvarEstab(_resp, nome):
+    e = Estabelecimento(nome=nome)
+    key = e.put()
+    json_str = json.dumps({'id': key.id()})
+    _resp.write(json_str)
+
+
+def listarEstabelecimentos(_resp):
+    query = Estabelecimento.query().order(-Estabelecimento.nome, -Estabelecimento.rate, -Estabelecimento.comentarios)
+
+    def to_dict(c):
+        dct = c.to_dict()
+        dct['id'] = str(c.key.id())
+        return dct
+
+    lista_de_estabelecimentos = [to_dict(c) for c in query.fetch()]
+    lista_de_estabelecimentos = json.dumps(lista_de_estabelecimentos)
+    _resp.write(lista_de_estabelecimentos)
+
+
+def removerEstab(_resp, idEstab):
+    estab = Estabelecimento.get_by_id(int(idEstab))
+    estab.key.delete()
+
 

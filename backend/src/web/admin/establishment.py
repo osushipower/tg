@@ -3,4 +3,4 @@ from __future__ import absolute_import, unicode_literals
 
 
 def index(_write_tmpl):
-    _write_tmpl('/templates/admin_estatisticas.html')
+    _write_tmpl('/templates/admin_establishment.html')

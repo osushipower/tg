@@ -16,3 +16,4 @@ class RProdutoXLista(ndb.Model):
     localcompra = ndb.StringProperty()
     autor = ndb.StringProperty()
     datacompra = ndb.DateTimeProperty(auto_now=True)
+

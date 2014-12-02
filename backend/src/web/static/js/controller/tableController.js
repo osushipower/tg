@@ -6,8 +6,13 @@ app.config(function ($interpolateProvider) {
 
 function NiceController($scope, $http) {
     $scope.produtos = [];
-    $http.post('/admin/rest/listar').success(function (json) {
+    $http.post('/admin/rest/listarProdutos').success(function (json) {
         $scope.produtos = json || [];
+    });
+
+    $scope.estabelecimentos = [];
+    $http.post('/admin/rest/listarEstabelecimentos').success(function (json) {
+        $scope.estabelecimentos = json || [];
     });
 
     $scope.listasuser = [];
@@ -75,6 +80,22 @@ function NiceController($scope, $http) {
     $scope.removerElemento = function (produto, index) {
         $scope.produtos.splice(index, 1);
         $http.post('/admin/rest/remover', {"idProduto": produto.id});
+    };
+
+    $scope.cadastrarEstabelecimento = function () {
+        var estab = {
+            "nome": $scope.inputNome,
+        };
+        console.log(estab)
+        $http.post('/admin/rest/salvarEstab', estab).success(function (json) {
+            estab.id = json.id;
+            $scope.estabelecimentos.push(estab)
+        });
+    };
+
+    $scope.removerEstabelecimento = function (estab, index) {
+        $scope.estabelecimentos.splice(index, 1);
+        $http.post('/admin/rest/removerEstab', {"idEstab": estab.id});
     };
 
 }

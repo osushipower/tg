@@ -35,6 +35,15 @@ indexes:
   - name: password
     direction: desc
 
+- kind: Estabelecimento
+  properties:
+  - name: nome
+    direction: desc
+  - name: rate
+    direction: desc
+  - name: comentarios
+    direction: desc
+
 - kind: Produto
   properties:
   - name: nome
