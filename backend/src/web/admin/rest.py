@@ -38,10 +38,19 @@ def salvar_lista(_resp, _usuario_logado, *args, **kwargs):
             item['produto'] = Produto.get_by_id(long(item["id"])).key
             item.pop('id')
             item['autor'] = _usuario_logado.firstname
-            item.pop('autor')
             list_key = RProdutoXLista(**item).put()
             list_keys.append(list_key)
-        RUsuarioXLista(user_key=_usuario_logado.key, list_key=list_keys).put()
+        #  pego a lista do usuario
+        usuario_lista = RUsuarioXLista.get_by_user(_usuario_logado.key.id())
+
+        if usuario_lista  is None:
+        	#  se ela nao existo eu crio uma
+        	usuario_lista = RUsuarioXLista(user_key=_usuario_logado.key, list_key=list_keys)
+        else:
+        	#  se existe eu adiciono list_keys na lista de chaves
+        	usuario_lista.list_key.extend(list_keys)
+        # salvo a lista
+        usuario_lista.put()
 
 
 def exibirlistasalvas(_resp):
@@ -50,8 +59,18 @@ def exibirlistasalvas(_resp):
 
 
 def exibirlistasusuario(_resp, _usuario_logado):
-    tempPxL = RProdutoXLista.query().fetch()
-    _resp.write(tempPxL)
+
+	#  campos para excluir do  to_dict do RProdutoXLista
+	fields_to_exclude = ["produto", "preco", "quant", "total", "localcompra"]
+	# busco a RUsuarioXLista do usuario
+	usuario_lista = RUsuarioXLista.get_by_user(_usuario_logado.key.id())
+	#  encontro todas as RProdutoXLista da lista do usuario
+	listas = ndb.get_multi([lista for lista in usuario_lista.list_key])
+	# gero uma lista de dicionarios excluindo os campos em fields_to_exclude
+	# isso deixa apenas datacompra e autor
+	listas = [lista.to_dict(exclude=fields_to_exclude) for lista in listas]
+
+	_resp.write(listas)
 
 
 def removerlistasalva(_resp, idLista):
