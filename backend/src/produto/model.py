@@ -17,3 +17,8 @@ class RProdutoXLista(ndb.Model):
     autor = ndb.StringProperty()
     datacompra = ndb.DateTimeProperty(auto_now=True)
 
+    def to_dict(self, **kwargs):
+    	dic = super(RProdutoXLista,  self).to_dict(**kwargs)
+    	dic["datacompra"] = dic["datacompra"].strftime("%d/%m/%y")
+    	return dic
+
