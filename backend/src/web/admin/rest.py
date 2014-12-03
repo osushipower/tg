@@ -60,18 +60,21 @@ def exibirlistasalvas(_resp):
 
 def exibirlistasusuario(_resp, _usuario_logado):
 
+    response = {}
 	#  campos para excluir do  to_dict do RProdutoXLista
 	fields_to_exclude = ["produto", "preco", "quant", "total", "localcompra", "autor"]
 	# busco a RUsuarioXLista do usuario
 	usuario_lista = RUsuarioXLista.get_by_user(_usuario_logado.key.id())
-	#  encontro todas as RProdutoXLista da lista do usuario
-	listas = ndb.get_multi([lista for lista in usuario_lista.list_key])
-	# gero uma lista de dicionarios excluindo os campos em fields_to_exclude
-	# isso deixa apenas datacompra e autor
-	listas = [lista.to_dict(exclude=fields_to_exclude) for lista in listas]
-	response = {}
-	response["listas"] = listas
-	response["autor"] = _usuario_logado.firstname
+
+    if usuario_lista is not None:
+    	#  encontro todas as RProdutoXLista da lista do usuario
+    	listas = ndb.get_multi([lista for lista in usuario_lista.list_key])
+
+    	# gero uma lista de dicionarios excluindo os campos em fields_to_exclude
+    	# isso deixa apenas datacompra e autor
+    	listas = [lista.to_dict(exclude=fields_to_exclude) for lista in listas]
+    	response["listas"] = listas
+    	response["autor"] = _usuario_logado.firstname
 	_resp.write(response)
 
 
