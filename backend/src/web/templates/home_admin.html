@@ -11,14 +11,22 @@
                     <thead>
                     <tr>
                         <th>Nome Produto</th>
-                        <th>Marca</th>
+                        <th> Marcas </th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="p in produtos | filter: search track by $id(p)">
-                        <td class="filterable-cell">{_ p.nome _}</td>
-                        <td class="filterable-cell">{_ p.marca _}</td>
+                    <tr ng-repeat="p in produtos_sistema track by $index | filter: search">
+                        <td class="filterable-cell">{_ p.id _}</td>
+                        <td class="dropdown">
+                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                          Marcas
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                                <li  ng-repeat="marca in p.brands track by $index" role="presentation"><a role="menuitem"  href="#">{_marca_}</a></li>
+                          </ul>
+                        </td>
                         <td>
                             <button class="btn btn-danger" type="submit" ng-click="removerElemento(p, $index)"><span
                                     class="glyphicon glyphicon-remove"></span></button>
@@ -33,15 +41,15 @@
 
                 <form role="form">
                     <div class="form-group">
-                        <input class="form-control" title="Nome"
+                        <input id="nameClear" class="form-control" title="Nome"
                                placeholder="Nome do Produto" ng-model="inputNome">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" title="Marca"
+                        <input id="brandClear" class="form-control" title="Marca"
                                placeholder="Marca do Produto" ng-model="inputMarca">
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success" type="submit" ng-click="cadastrarProduto()"><span
+                        <button class="btn btn-success" type="submit" ng-click="cadastrarProduto(); limparProd()"><span
                                 class="glyphicon glyphicon-ok"></span></button>
                     </div>
                 </form>

@@ -11,15 +11,11 @@ class Usuario(ndb.Model):
     email = ndb.StringProperty()
     password = ndb.StringProperty()
     google_id = ndb.StringProperty()
+    listas = ndb.KeyProperty(repeated=True)
 
     @classmethod
     def query_by_google(cls, google_id):
         return cls.query(cls.google_id == google_id)
-
-
-class RUsuarioXLista(ndb.Model):
-    user_key = ndb.KeyProperty()
-    list_key = ndb.KeyProperty(repeated=True)
 
     @classmethod
     def get_by_user(cls, user_id):

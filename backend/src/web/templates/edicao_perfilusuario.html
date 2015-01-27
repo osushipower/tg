@@ -5,6 +5,9 @@
 <div class="container">
     <div class="col-md-12 column" style="background-color: #ffffff">
         <br/>
+
+        {% if _usuario_logado %}
+
         <h2>Perfil:</h2>
         <br/>
 
@@ -15,25 +18,130 @@
         </p>
         <br/>
 
-        <h4>Minhas Listas:</h4>
+        <h4><strong>Minhas Listas:</strong></h4>
         <br/>
 
         <div class="table-responsive">
-            <table>
+            <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>Visualizar</th>
+                    <th>Lista</th>
+                    <th>Data</th>
+                    <th>Local</th>
+                    <th>Autor</th>
+                    <th>Remover</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td></td>
+                <tr ng-repeat="lista in listas_user.listas">
+                    <td>
+                        <button class="btn btn-info" ng-click="visualizarLista(lista)" data-toggle="modal"
+                                data-target="#mVerificar">
+                            <span class="glyphicon glyphicon-eye-open"></span></button>
+                    </td>
+                    <td>{_lista.nome_}</td>
+                    <td>{_lista.datacompra_}</td>
+                    <td>{_lista.localcompra_}</td>
+                    <td>{_listas_user.autor_}</td>
+                    <td>
+                        <button class="btn btn-danger" data-toggle="modal" ng-click="removerLista(lista)"
+                                data-target="#mDeletar"><span class="glyphicon glyphicon-remove"></span></button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
 
+        {% else %}
+        <div class="alert alert-warning alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">×</span></button>
+            <h4>Ops! Parece que você não está logado!</h4>
+
+            <p>Que tal se cadastrar no sistema? É rápido e você pode salvar quantas
+                listas quiser! :)</p>
+
+            <p>
+                <a href="{{ _login_url }}" type="button" class="btn btn-success">Login</a>
+                <a href="/" type="button" class="btn btn-default">Página Inicial</a>
+            </p>
+        </div>
+        {% endif %}
+
+        <br/>
     </div>
 </div>
 
+<div class="modal fade" id="mVerificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Minha Lista:</h4>
+            </div>
+            <div class="modal-body">
+                <p>TESTE TESTE TESTE :)</p> <br/>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Produto:</th>
+                            <th>Quantidade:</th>
+                            <th>Preço(un):</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="t in temp track by $index">
+                            <td>{_ t.nome _}</td>
+                            <td>{_ t.quantidade _}</td>
+                            <td>R$ {_ t.preco _}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/>
+
+                <p><strong>Preço Total:</strong> R$ {_ t.precototal _}</p>
+                <br/>
+
+                <p>Se tudo estiver ok, aperte confirmar!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="mDeletar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Tem certeza que irá deletar esta lista?</p> <br/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="desfazerRemover()" data-dismiss="modal">Não
+                </button>
+                <button type="button" class="btn btn-danger" ng-click="confirmarRemover()" data-dismiss="modal">Sim
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 {% endblock %}
+
+<!--usuarios = Usuario.query().fetch()-->
+<!--listas = []-->
+
+<!--for index, usuario in enumerate(usuarios):-->
+<!--listas.append({})-->
+<!--listas[index]["usuario"] = usuario.nome-->
+<!--listas[index]["listas_usuario"]  = [lista.get().to_dict() for lista in usuario.listas]-->

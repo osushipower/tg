@@ -44,7 +44,21 @@ indexes:
   - name: comentarios
     direction: desc
 
+- kind: Product
+  properties:
+  - name: nome
+    direction: desc
+  - name: marca
+    direction: desc
+
 - kind: Produto
+  properties:
+  - name: nome
+    direction: desc
+  - name: marca
+    direction: desc
+
+- kind: SystemProduct
   properties:
   - name: nome
     direction: desc

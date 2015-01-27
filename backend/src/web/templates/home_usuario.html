@@ -8,155 +8,197 @@
 
         <form role="form">
             <div class="form-group">
-                <input class="form-control" ng-model="search" title="Busca Produto"
+                <input id="inputSearch" class="form-control" ng-model="search" title="Busca Produto"
                        placeholder="Comece pesquisando por um produto :)">
             </div>
         </form>
-        <div ng-show="search.length >= 1">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Nome Produto</th>
-                    <th>Marca</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="p in produtos | filter: search track by $id(p)">
-                    <td class="filterable-cell">{_ p.nome _}</td>
-                    <td class="filterable-cell">{_ p.marca _}</td>
-                    <td class="filterable-cell">
-                        <button class="btn btn-success" title="Adicionar"
-                                ng-click="adicionarProdutoListaTemp(p)">
-                            <span class="glyphicon glyphicon-plus"></span>
+
+        <div class="row">
+            <div class="col-md-6 column">
+
+                <div ng-show="search.length >= 1">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Nome Produto</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="p in produtos_sistema | filter: search track by $id(p)">
+                            <td class="filterable-cell">{_ p.id _}</td>
+                            <td class="filterable-cell">
+                                <button class="btn btn-success" title="Adicionar"
+                                        ng-click="adicionarProdutoListaTemp(p); limparBusca()">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                </div>
+            </div>
+
+            <div class="col-md-6 column">
+
+                <h3>Itens na Lista: </h3>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Marca</th>
+                            <th>Quantidade</th>
+                            <th>Preço(un.)</th>
+                            <th>Remover</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="i in listatemp track by $index">
+                            <td class="filterable-cell">{_ i.id _}</td>
+                            <td class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                        data-toggle="dropdown" aria-expanded="true">
+                                    {_i.selected_brand_}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-init="initSelectedBrand(i)" ng-repeat="marca in i.brands track by $index"
+                                        role="presentation"><a ng-click="setBrand(i, marca)" href="">{_marca_}</a></li>
+                                </ul>
+                            </td>
+                            <td class="filterable-cell">
+                                <div class="input-group required">
+                                    <input type="number" min="1" class="form-control input-sm"
+                                           ng-model="i.quant">
+                                </div>
+                            </td>
+                            <td class="filterable-cell">
+                                <div class="input-group required">
+                                    <input type="number" step="any" min="0.01" class="form-control input-sm"
+                                           ng-model="i.preco">
+                                </div>
+                            </td>
+                            <td class="filterable-cell">
+                                <button class="btn btn-danger" title="Remover Item"
+                                        ng-click="removerProduto(i)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br/>
+
+                <form role="form">
+                    <div class="form-group">
+                        <label>Local de Compra:</label>
+                        <select ng-model="local_compra">
+                            <option ng-init="initLocalCompra()" ng-repeat="e in estabelecimentos | orderBy: e.nome"
+                                    value="{_ e.nome _}">{_ e.nome _}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group" align="center">
+                        {% if _usuario_logado %}
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mConfirmacao"
+                                ng-click="calcularPrecoTotal(0)" title="Salvar Lista"
+                                ng-disabled="listIsEmpty()"><span
+                                class="glyphicon glyphicon-floppy-disk"></span> Salvar Lista
                         </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        {% else %}
+                        <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">×</span></button>
+                            <h4>Ops! Parece que você não está logado!</h4>
+
+                            <p>Que tal se cadastrar no sistema? É rápido e você pode salvar quantas
+                                listas quiser! :)</p>
+                            <p>
+                                <a href="{{ _login_url }}" type="button" class="btn btn-success">Login</a>
+                                <a href="/" type="button" class="btn btn-default">Página Inicial</a>
+                            </p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
             <br/>
         </div>
-        <br/>
-
-        <h3>Itens na Lista: </h3>
-
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Marca</th>
-                    <th>Quantidade</th>
-                    <th>Preço Unitário</th>
-                    <th>Editar/Remover</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="i in listatemp track by $index">
-                    <td class="filterable-cell">{_ i.nome _}</td>
-                    <td class="filterable-cell">{_ i.marca _}</td>
-                    <td class="filterable-cell">
-                        <div class="input-group required">
-                            <input type="number" min="1" class="form-control input-sm"
-                                   ng-model="i.quant">
-                        </div>
-                    </td>
-                    <td class="filterable-cell">
-                        <div class="input-group required">
-                            <input type="number" step="any" min="0.01" class="form-control input-sm"
-                                   ng-model="i.preco">
-                        </div>
-                    </td>
-                    <td class="filterable-cell">
-                        <button class="btn btn-danger" title="Remover Item"
-                                ng-click="removerProduto(i)">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <form role="form">
-            <div class="form-group">
-                <label>Local de Compra:</label>
-                <select>
-                    <option value="Carrefour">Carrefour</option>
-                    <option value="Dia Supermercado">Dia Supermercado</option>
-                    <option value="Extra">Extra</option>
-                    <option value="Nagumo">Nagumo</option>
-                    <option value="Sam's Club">Sam's Club</option>
-                    <option value="Sonda">Sonda</option>
-                    <option value="Tenda Atacado">Tenda Atacado</option>
-                    <option value="Villa Real Supermercados">Villa Real Supermercados</option>
-                    <option value="Walmart">Walmart</option>
-                </select>
-            </div>
-            <div class="form-group" align="center">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#mConfirmacao"
-                        ng-click="calcularPrecoTotal(0)" title="Salvar Lista"><span
-                        class="glyphicon glyphicon-floppy-disk"></span> Salvar Lista
-                </button>
-            </div>
-        </form>
-
-        <br/>
-
     </div>
 </div>
 
-<div class="modal fade" id="mConfirmacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="mConfirmacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                        class="sr-only">Close</span></button>
+                <button type="button" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span
+                        class="sr-only">Fechar</span></button>
                 <h4 class="modal-title">Quase lá...</h4>
             </div>
             <div class="modal-body">
                 <p>Olá, {{ _usuario_logado.firstname }} que tal dar aquela última verificada? :)</p> <br/>
 
-                <ul ng-repeat="i in listatemp track by $index">
-                    <li><strong>Produto:</strong> R$ {_ i.nome _}</li>
-                    <li><strong>Quantidade:</strong> R$ {_ i.quant _}</li>
-                    <li><strong>Preço(uni):</strong> R$ {_ i.preco _}</li>
-                </ul>
-
-                <!--
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Produto</th>
+                            <th>Nome</th>
+                            <th>Marca</th>
                             <th>Quantidade</th>
-                            <th>Preço Unitário</th>
+                            <th>Preço(un.)</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="i in listatemp track by $index">
-                            <td class="filterable-cell">{_ i.nome _}</td>
-                            <td class="filterable-cell">{_ i.quant _}</td>
-                            <td class="filterable-cell">{_ i.preco _}</td>
+                            <td>{_ i.id _}</td>
+                            <td>{_ i.selected_brand_}</td>
+                            <td>R$ {_ i.quant _}</td>
+                            <td>R$ {_ i.preco _}</td>
                         </tr>
                         </tbody>
                     </table>
-                </div>-->
-                <br/>
-
+                </div>
                 <p><strong>Preço Total:</strong> R$ {_ precototal _}</p>
                 <br/>
 
                 <p>Se tudo estiver ok, aperte confirmar!</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" ng-click="salvarLista()" class="btn btn-primary">Confirmar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="button" ng-click="salvarLista()" data-dismiss="modal" data-toggle="modal"
+                        data-target="#mSuccess"
+                        class="btn btn-primary">Confirmar
+                </button>
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="mSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Sua lista foi salva com sucesso!</p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" href="/perfil">Close</a>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 
 {% endblock %}

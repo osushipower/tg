@@ -8,8 +8,8 @@ SENDER_EMAIL = 'eduardothewriter2@gmail.com'
 DEFAULT_LOCALE = 'pt_BR'
 DEFAULT_TIMEZONE = 'America/Sao_Paulo'
 LOCALES = ['en_US', 'pt_BR']
-TEMPLATE_404_ERROR = 'base/home.html'
-TEMPLATE_400_ERROR = 'base/home.html'
+TEMPLATE_404_ERROR = 'base/base_error.html'
+TEMPLATE_400_ERROR = 'base/base_error.html'
 MIDDLEWARES = [middleware.execute,
                tmpl_middleware.execute,
                email_errors.execute,
