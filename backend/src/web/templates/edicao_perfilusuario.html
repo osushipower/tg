@@ -43,7 +43,7 @@
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
                     <div class="panel-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="height: 200px !important; overflow: scroll;">
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
@@ -58,7 +58,7 @@
                                 <tbody>
                                 <tr ng-repeat="lista in listas_user.listas">
                                     <td>
-                                        <button class="btn btn-info" ng-click="visualizarLista(lista)"
+                                        <button class="btn btn-info" ng-click="visualizarLista(lista, lista.total)"
                                                 data-toggle="modal"
                                                 data-target="#mVerificar">
                                             <span class="glyphicon glyphicon-eye-open"></span></button>
@@ -112,13 +112,12 @@
                 <h4 class="modal-title">Minha Lista:</h4>
             </div>
             <div class="modal-body">
-                <p>TESTE TESTE TESTE :)</p> <br/>
-
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>Produto:</th>
+                            <th>Marca</th>
                             <th>Quantidade:</th>
                             <th>Preço(un):</th>
                         </tr>
@@ -126,6 +125,7 @@
                         <tbody>
                         <tr ng-repeat="t in temp track by $index">
                             <td>{_ t.nome _}</td>
+                            <td>{_ t.marca _}</td>
                             <td>{_ t.quantidade _}</td>
                             <td>R$ {_ t.preco _}</td>
                         </tr>
@@ -134,10 +134,7 @@
                 </div>
                 <br/>
 
-                <p><strong>Preço Total:</strong> R$ {_ t.precototal _}</p>
-                <br/>
-
-                <p>Se tudo estiver ok, aperte confirmar!</p>
+                <p><strong>Preço Total:</strong> R$ {_ consultaptotal _}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

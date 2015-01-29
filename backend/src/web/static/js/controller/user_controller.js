@@ -25,6 +25,7 @@ angular.module("projetolistacompras").controller("UserController", function($sco
 
     $scope.search = "";
     $scope.precototal = 0;
+    $scope.consultaptotal = 0;
 
     $scope.initSelectedBrand = function(produto){
       produto.selected_brand = produto.brands[0];
@@ -52,9 +53,11 @@ angular.module("projetolistacompras").controller("UserController", function($sco
         $scope.precototal = parseFloat(Math.round($scope.precototal * 100) / 100).toFixed(2);
     };
 
-    $scope.visualizarLista =  function(l) {
+    $scope.visualizarLista =  function(l, lt) {
+        $scope.consultaptotal = 0;
         $scope.temp = l.produtos;
-
+        $scope.consultaptotal = lt;
+        $scope.consultaptotal = parseFloat(Math.round($scope.consultaptotal * 100) / 100).toFixed(2);
     };
 
     $scope.removerLista = function(lista){
