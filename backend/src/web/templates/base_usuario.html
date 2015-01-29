@@ -47,7 +47,8 @@
                     </li>
                     {% set menu = [
                     ('Home', '/lista'),
-                    ('Perfil', '/perfil')
+                    ('Perfil', '/perfil'),
+                    ('Navegar', '/buscar')
                     ] %}
                     {% for name, href in menu %}
                     <li {% if request.path.startswith(href) %} class="active" {% endif %}>

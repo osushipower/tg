@@ -1,0 +1,43 @@
+{% extends 'templates/base_usuario.html' %}
+
+{% block main %}
+
+<div class="container">
+    <div class="col-md-12 column" style="background-color: #ffffff">
+
+        <div class="row">
+            <div class="col-md-6 column">
+
+                <div class="table-responsive">
+
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Data Criação</th>
+                                <th>Autor</th>
+                                <th>Comparar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="l in listasexistentes track by $index">
+                                <td>{_ l. _}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 column">
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

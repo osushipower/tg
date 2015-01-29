@@ -3,6 +3,7 @@
 from __future__ import absolute_import, unicode_literals
 import json
 from produto.model import Product, Lista, SystemProduct
+from usuario.model import Usuario
 from estabelecimento.model import Estabelecimento
 from google.appengine.ext import ndb
 
@@ -70,3 +71,12 @@ def removerlistasalva(_resp, _usuario_logado, id):
         produto.delete()
     _usuario_logado.put()
     lista.delete()
+
+def buscarListas(_resp):
+    usuarios = Usuario.query().fetch()
+    listas = []
+    for index, usuario in enumerate(usuarios):
+        listas.append({})
+        listas[index]["usuario"] = usuario.firstname
+        listas[index]["listas_usuario"] = [lista.get().to_dict() for lista in usuario.listas]
+    _resp.write(listas)

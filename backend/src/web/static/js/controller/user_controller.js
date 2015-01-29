@@ -1,4 +1,5 @@
 angular.module("projetolistacompras").controller("UserController", function($scope, $http) {
+
     $scope.produtos_sistema = [];
 
     $http.post('/admin/rest/listarProdutosSistema').success(function (json) {
@@ -14,6 +15,11 @@ angular.module("projetolistacompras").controller("UserController", function($sco
 	$http.post('/admin/rest/listarEstabelecimentos').success(function (json) {
 		$scope.estabelecimentos = json || [];
 	});
+
+    $scope.listasexistentes = [];
+    $http.post('/usuario/rest/buscarListas').success(function (json) {
+        $scope.listasexistentes = [];
+    });
 
     $scope.listatemp = [];
 

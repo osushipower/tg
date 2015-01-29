@@ -11,47 +11,77 @@
         <h2>Perfil:</h2>
         <br/>
 
-        <p>
-            <strong>Nickname:</strong> {{ _usuario_logado.firstname }} <br/>
-            <strong>Cidade:</strong> {{ _usuario_logado.city }} <br/>
-            <strong>Email:</strong> {{ _usuario_logado.email }}
-        </p>
-        <br/>
 
-        <h4><strong>Minhas Listas:</strong></h4>
-        <br/>
-
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Visualizar</th>
-                    <th>Lista</th>
-                    <th>Data</th>
-                    <th>Local</th>
-                    <th>Autor</th>
-                    <th>Remover</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="lista in listas_user.listas">
-                    <td>
-                        <button class="btn btn-info" ng-click="visualizarLista(lista)" data-toggle="modal"
-                                data-target="#mVerificar">
-                            <span class="glyphicon glyphicon-eye-open"></span></button>
-                    </td>
-                    <td>{_lista.nome_}</td>
-                    <td>{_lista.datacompra_}</td>
-                    <td>{_lista.localcompra_}</td>
-                    <td>{_listas_user.autor_}</td>
-                    <td>
-                        <button class="btn btn-danger" data-toggle="modal" ng-click="removerLista(lista)"
-                                data-target="#mDeletar"><span class="glyphicon glyphicon-remove"></span></button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+                           aria-controls="collapseOne">
+                            <span class="glyphicon glyphicon-plus"></span> Dados Pessoais
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <p>
+                            <strong>Nickname:</strong> {{ _usuario_logado.firstname }} <br/>
+                            <strong>Cidade:</strong> {{ _usuario_logado.city }} <br/>
+                            <strong>Email:</strong> {{ _usuario_logado.email }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                           aria-controls="collapseTwo">
+                            <span class="glyphicon glyphicon-plus"></span> Minhas Listas
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Visualizar</th>
+                                    <th>Lista</th>
+                                    <th>Data</th>
+                                    <th>Local</th>
+                                    <th>Autor</th>
+                                    <th>Deletar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="lista in listas_user.listas">
+                                    <td>
+                                        <button class="btn btn-info" ng-click="visualizarLista(lista)"
+                                                data-toggle="modal"
+                                                data-target="#mVerificar">
+                                            <span class="glyphicon glyphicon-eye-open"></span></button>
+                                    </td>
+                                    <td>{_lista.nome_}</td>
+                                    <td>{_lista.datacompra_}</td>
+                                    <td>{_lista.localcompra_}</td>
+                                    <td>{_listas_user.autor_}</td>
+                                    <td>
+                                        <button class="btn btn-danger" data-toggle="modal"
+                                                ng-click="removerLista(lista)"
+                                                data-target="#mDeletar"><span class="glyphicon glyphicon-remove"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
         {% else %}
         <div class="alert alert-warning alert-dismissible fade in" role="alert">
