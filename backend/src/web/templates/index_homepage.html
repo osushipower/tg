@@ -1,0 +1,88 @@
+{% extends 'templates/index.html' %}
+
+{% block main %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12 column">
+            <h1><strong>LISTA DE COMPRAS</strong></h1>
+
+            <p>Crie listas, compare-as e por fim escolha a melhor opção!</p>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-fluid" style="background-color: #ffffff; margin-top: 40px">
+    <div class="row">
+        <div class="col-md-12 column" style="margin-bottom: 20px">
+            <br />
+            <p align="center"><h2 style="text-align: center"><strong>Bem-Vindo!</strong></h2></p>
+            <br />
+            <div class="container" style="margin-top: 20px; margin-bottom: 20px">
+
+                <div class="col-md-4 column">
+                    <p align="center">
+                        <img src="../static/img/sm-index.jpg" class="img-responsive img-circle" alt="Cesta Compras"
+                             style="width: 300px; height: 300px;">
+                        <br/>
+                        <strong>1º Passo:</strong> <br/>
+                        Comprou alguma coisa para sua casa e ainda está com a nota fiscal? Se não,
+                        ao realizar sua próxima compra, guarde-a para cadastrá-la aqui no nosso website.</p>
+                </div>
+                <div class="col-md-4 column">
+                    <p align="center">
+                        <img src="../static/img/smr-index.jpg" class="img-responsive img-circle" alt="Nota Fiscal"
+                             style="width: 300px; height: 300px;">
+                        <br/>
+                        <strong>2º Passo:</strong> <br/>
+                        Pegue a nota fiscal da compra mais recente e adicione as informações dos produtos
+                        que você comprou. Salve estas informações em forma de uma 'Lista de Compras' e compartilhe-a com
+                        os outros usuários.</p>
+                </div>
+                <div class="col-md-4 column">
+                    <p align="center">
+                        <img src="../static/img/m-index.jpg" class="img-responsive img-circle" alt="Homem Pesquisando"
+                             style="width: 300px; height: 300px;">
+                        <br/>
+                        <strong>3º Passo:</strong> <br/>
+                        Navegue por todas as listas recentes existentes no nosso website, compare os preços
+                        e por fim escolha o local mais econômico para realizar a sua próxima compra :)</p>
+                </div>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if not _usuario_logado %}
+
+<div class="container" style="background-color: #ffffff; margin-top: 50px; margin-bottom: 50px; width: 350px">
+
+    <div class="row">
+
+        <div class="col-md-12 column">
+
+            <div id="" class="container" style="margin-top: 20px; margin-bottom: 20px; width: 300px">
+                <p align="center">
+                    <img src="../static/img/google-logo-blue.png" class="img-responsive img-circle" alt="Logo Google"
+                         style="width: 100px; height: 100px;">
+                    <br/>
+                    Epa! Mas onde eu me cadastro?<br/>
+                    Não se preocupe! Para utilizar o sistema, basta usar sua conta do google.
+                    <br/>
+                    É rápido e simples.
+                    <br/>
+                    <a class="btn btn-info" href="{{ _login_url }}" style="margin-top: 20px">Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

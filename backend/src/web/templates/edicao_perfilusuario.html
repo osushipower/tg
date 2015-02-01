@@ -2,104 +2,102 @@
 
 {% block main %}
 
-<div class="container">
-    <div class="col-md-12 column" style="background-color: #ffffff">
-        <br/>
-
-        {% if _usuario_logado %}
-
-        <h2>Perfil:</h2>
-        <br/>
-
-
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
-                           aria-controls="collapseOne">
-                            <span class="glyphicon glyphicon-plus"></span> Dados Pessoais
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        <p>
-                            <strong>Nickname:</strong> {{ _usuario_logado.firstname }} <br/>
-                            <strong>Cidade:</strong> {{ _usuario_logado.city }} <br/>
-                            <strong>Email:</strong> {{ _usuario_logado.email }}
-                        </p>
+<div class="container" style="background-color: #ffffff">
+    <div class="row">
+        <div class="col-md-12 column">
+            {% if _usuario_logado %}
+            <h2>Perfil:</h2>
+            <br/>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+                               aria-controls="collapseOne">
+                                <span class="glyphicon glyphicon-plus"></span> Dados Pessoais
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <p>
+                                <strong>Nickname:</strong> {{ _usuario_logado.firstname }} <br/>
+                                <strong>Cidade:</strong> {{ _usuario_logado.city }} <br/>
+                                <strong>Email:</strong> {{ _usuario_logado.email }}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingTwo">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
-                           aria-controls="collapseTwo">
-                            <span class="glyphicon glyphicon-plus"></span> Minhas Listas
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body">
-                        <div class="table-responsive" style="height: 200px !important; overflow: scroll;">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Visualizar</th>
-                                    <th>Lista</th>
-                                    <th>Data</th>
-                                    <th>Local</th>
-                                    <th>Autor</th>
-                                    <th>Deletar</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="lista in listas_user.listas">
-                                    <td>
-                                        <button class="btn btn-info" ng-click="visualizarLista(lista, lista.total)"
-                                                data-toggle="modal"
-                                                data-target="#mVerificar">
-                                            <span class="glyphicon glyphicon-eye-open"></span></button>
-                                    </td>
-                                    <td>{_lista.nome_}</td>
-                                    <td>{_lista.datacompra_}</td>
-                                    <td>{_lista.localcompra_}</td>
-                                    <td>{_listas_user.autor_}</td>
-                                    <td>
-                                        <button class="btn btn-danger" data-toggle="modal"
-                                                ng-click="removerLista(lista)"
-                                                data-target="#mDeletar"><span class="glyphicon glyphicon-remove"></span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                               aria-controls="collapseTwo">
+                                <span class="glyphicon glyphicon-plus"></span> Minhas Listas
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <div class="table-responsive" style="height: 200px !important; overflow: scroll;">
+                                <table class="table table-condensed table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Visualizar</th>
+                                        <th>Lista</th>
+                                        <th>Data</th>
+                                        <th>Local</th>
+                                        <th>Autor</th>
+                                        <th>Deletar</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="lista in listas_user.listas">
+                                        <td>
+                                            <button class="btn btn-info" ng-click="visualizarLista(lista, lista.total)"
+                                                    data-toggle="modal"
+                                                    data-target="#mVerificar">
+                                                <span class="glyphicon glyphicon-eye-open"></span></button>
+                                        </td>
+                                        <td>{_lista.nome_}</td>
+                                        <td>{_lista.datacompra_}</td>
+                                        <td>{_lista.localcompra_}</td>
+                                        <td>{_listas_user.autor_}</td>
+                                        <td>
+                                            <button class="btn btn-danger" data-toggle="modal"
+                                                    ng-click="removerLista(lista)"
+                                                    data-target="#mDeletar"><span
+                                                    class="glyphicon glyphicon-remove"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            {% else %}
+            <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4>Ops! Parece que você não está logado!</h4>
+
+                <p>Que tal se cadastrar no sistema? É rápido e você pode salvar quantas
+                    listas quiser! :)</p>
+
+                <p>
+                    <a href="{{ _login_url }}" type="button" class="btn btn-success">Login</a>
+                    <a href="/" type="button" class="btn btn-default">Página Inicial</a>
+                </p>
+            </div>
+            {% endif %}
         </div>
-
-
-        {% else %}
-        <div class="alert alert-warning alert-dismissible fade in" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                    aria-hidden="true">×</span></button>
-            <h4>Ops! Parece que você não está logado!</h4>
-
-            <p>Que tal se cadastrar no sistema? É rápido e você pode salvar quantas
-                listas quiser! :)</p>
-
-            <p>
-                <a href="{{ _login_url }}" type="button" class="btn btn-success">Login</a>
-                <a href="/" type="button" class="btn btn-default">Página Inicial</a>
-            </p>
-        </div>
-        {% endif %}
-
-        <br/>
     </div>
 </div>
 
@@ -112,8 +110,8 @@
                 <h4 class="modal-title">Minha Lista:</h4>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div class="table-responsive" style="height: 200px !important; overflow: scroll;">
+                    <table class="table table-condensed table-hover">
                         <thead>
                         <tr>
                             <th>Produto:</th>

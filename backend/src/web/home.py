@@ -9,9 +9,9 @@ def index(_write_tmpl):
     user = users.get_current_user()
 
     if user:
-        _write_tmpl('templates/index.html', {'name': user.nickname(), "logout": users.create_logout_url("/")})
+        _write_tmpl('templates/index_homepage.html', {'name': user.nickname(), "logout": users.create_logout_url("/")})
     else:
-        _write_tmpl('templates/index.html', {"login": users.create_login_url("/")})
+        _write_tmpl('templates/index_homepage.html', {"login": users.create_login_url("/")})
 
 
 def params(_resp, *args, **kwargs):

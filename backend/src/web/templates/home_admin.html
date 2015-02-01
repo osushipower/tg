@@ -3,56 +3,64 @@
 {% block main %}
 
 <div class="container">
-    <div class="col-md-12 column" style="background-color: #ffffff">
-        <div class="row">
-            <div class="col-md-6 column" style="background-color: #ffffff">
-                <br/>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Nome Produto</th>
-                        <th> Marcas </th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="p in produtos_sistema track by $index | filter: search">
-                        <td class="filterable-cell">{_ p.id _}</td>
-                        <td class="dropdown">
-                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                          Marcas
-                            <span class="caret"></span>
-                          </button>
-                          <ul class="dropdown-menu" role="menu">
-                                <li  ng-repeat="marca in p.brands track by $index" role="presentation"><a role="menuitem"  href="#">{_marca_}</a></li>
-                          </ul>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger" type="submit" ng-click="removerElemento(p, $index)"><span
-                                    class="glyphicon glyphicon-remove"></span></button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <br/>
-            </div>
-            <div class="col-md-6" style="background-color: #ffffff">
-                <h3>Cadastrar novo Produto: </h3>
+    <div class="row">
+        <div class="col-md-12 column" style="background-color: #ffffff">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 column" style="background-color: #ffffff; margin-top: 25px">
+                        <div class="table table-responsive" style="height: 200px !important; overflow: scroll;">
+                            <table class="table table-condensed table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Nome Produto</th>
+                                    <th> Marcas</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="p in produtos_sistema track by $index | filter: search">
+                                    <td class="filterable-cell">{_ p.id _}</td>
+                                    <td class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                                data-toggle="dropdown" aria-expanded="true">
+                                            Marcas
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li ng-repeat="marca in p.brands track by $index" role="presentation"><a
+                                                    role="menuitem" href="#">{_marca_}</a></li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" type="submit"
+                                                ng-click="removerElemento(p, $index)"><span
+                                                class="glyphicon glyphicon-remove"></span></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="background-color: #ffffff">
+                        <h3>Cadastrar novo Produto: </h3>
 
-                <form role="form">
-                    <div class="form-group">
-                        <input id="nameClear" class="form-control" title="Nome"
-                               placeholder="Nome do Produto" ng-model="inputNome">
+                        <form role="form">
+                            <div class="form-group">
+                                <input id="nameClear" class="form-control" title="Nome"
+                                       placeholder="Nome do Produto" ng-model="inputNome">
+                            </div>
+                            <div class="form-group">
+                                <input id="brandClear" class="form-control" title="Marca"
+                                       placeholder="Marca do Produto" ng-model="inputMarca">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-success" type="submit"
+                                        ng-click="cadastrarProduto(); limparProd()"><span
+                                        class="glyphicon glyphicon-ok"></span></button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <input id="brandClear" class="form-control" title="Marca"
-                               placeholder="Marca do Produto" ng-model="inputMarca">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-success" type="submit" ng-click="cadastrarProduto(); limparProd()"><span
-                                class="glyphicon glyphicon-ok"></span></button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

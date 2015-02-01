@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>TG da Depressão</title>
+    <title>TG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../static/css/style.css" rel="stylesheet">
+    <link href="../static/css/styles.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -21,32 +21,84 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/img/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/static/img/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon" href="/static/img/logo.png"> -->
-
 </head>
 
 <body>
 
-<div class="row clearfix">
-    <div class="col-md-12 column">
+<header role="banner" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">SUPERLIST</a>
+        </div>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <nav id="navbarCollapse" class="collapse navbar-collapse bs-navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% if _usuario_logado %}
+                {% set  menu = [
+                ('Nova Lista', '/lista'),
+                ('Navegar', '/buscar')
+                ] %}
+                {% endif %}
+                {% for name, href in menu %}
+                <li {% if request.path.startswith(href) %} class="active" {% endif %}>
+                    <a href="{{ href }}">{{ name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% set menu2 = [
+                ('Sobre', '/sobre'),
+                ('Contato', '/contato')
+                ] %}
+                {% for name2, href2 in menu2 %}
+                <li {% if request.path.startswith(href2) %} class="active" {% endif %}>
+                    <a href="{{ href2 }}">{{ name2 }}</a>
+                </li>
+                {% endfor %}
+                {% if _usuario_logado %}
 
-        {% if _usuario_logado %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" role="button" aria-expanded="false">
+                        <span class="glyphicon glyphicon-user"></span> {{_usuario_logado.firstname }}
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/perfil">
+                            Meu Perfil</a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ _logout_url }}">
+                            Logout</a>
+                        </li>
+                    </ul>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{{ _login_url }}">Login</a></li>
 
-        <a href="{{ _logout_url }}" class="btn btn-info">Hello, {{
-            _usuario_logado.firstname }} (Logout)</a>
-
-        {% else %}
-
-        <a href="{{ _login_url }}" class="btn btn-success">Login</a>
-
-        {% endif %}
-
+                {% endif %}
+            </ul>
+        </nav>
     </div>
-</div>
+</header>
+
+    {% block main %} {% endblock %}
 
 </body>
 
 <script type="text/javascript" src="../static/js/jquery.min.js"></script>
 <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+<style>
+    body {
+        background: url(../static/img/gplaypattern.png);
+        background-repeat: repeat;
+    }
 
+</style>
 
 </html>

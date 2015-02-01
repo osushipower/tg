@@ -56,12 +56,13 @@ def exibirlistasalvas(_resp):
 
 
 def exibirlistasusuario(_resp, _usuario_logado):
-    if _usuario_logado.listas is not None:
-        listas = [lista.get().to_dict() for lista in _usuario_logado.listas]
-        response = {}
-        response["listas"] = listas
-        response["autor"] = _usuario_logado.firstname
-        _resp.write(json.dumps(response))
+    if _usuario_logado:
+        if _usuario_logado.listas is not None:
+            listas = [lista.get().to_dict() for lista in _usuario_logado.listas]
+            response = {}
+            response["listas"] = listas
+            response["autor"] = _usuario_logado.firstname
+            _resp.write(json.dumps(response))
 
 
 def removerlistasalva(_resp, _usuario_logado, id):
