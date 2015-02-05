@@ -58,20 +58,23 @@ def exibirlistasalvas(_resp):
 def exibirlistasusuario(_resp, _usuario_logado):
     if _usuario_logado:
         if _usuario_logado.listas is not None:
-            listas = [lista.get().to_dict() for lista in _usuario_logado.listas]
+            listas = sorted( ndb.get_multi(_usuario_logado.listas), key=lambda lista:lista.datacompra)
             response = {}
-            response["listas"] = listas
+            response["listas"] = [lista.to_dict() for lista in listas]
             response["autor"] = _usuario_logado.firstname
             _resp.write(json.dumps(response))
 
 
 def removerlistasalva(_resp, _usuario_logado, id):
-    lista = filter(lambda lista: lista.id()==id, _usuario_logado.listas).pop()
-    _usuario_logado.listas.remove(lista)
-    for produto in lista.get().produtos:
-        produto.delete()
-    _usuario_logado.put()
-    lista.delete()
+
+    lista = filter(lambda lista: lista.id()==id, _usuario_logado.listas)
+    if lista:
+        lista = lista[0]
+        _usuario_logado.listas.remove(lista)
+        for produto in lista.get().produtos:
+            produto.delete()
+        _usuario_logado.put()
+        lista.delete()
 
 def buscarListas(_resp):
     usuarios = Usuario.query().fetch()

@@ -53,7 +53,7 @@ class Lista(ndb.Model):
     nome = ndb.StringProperty(required=True, default=datetime.datetime.now().strftime("%Y-%b-%d %H:%M"))
     produtos = ndb.KeyProperty(repeated=True)
     localcompra = ndb.StringProperty()
-    datacompra = ndb.DateProperty(auto_now=True)
+    datacompra = ndb.DateProperty(auto_now=True, auto_now_add=True)
     total = ndb.FloatProperty(required=True)
 
     def to_dict(self):
