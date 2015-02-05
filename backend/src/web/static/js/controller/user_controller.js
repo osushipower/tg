@@ -60,15 +60,16 @@ angular.module("projetolistacompras").controller("UserController", function($sco
         $scope.consultaptotal = parseFloat(Math.round($scope.consultaptotal * 100) / 100).toFixed(2);
     };
 
-    $scope.removerLista = function(lista){
+    $scope.removerLista = function(lista, index){
       $scope.list_to_remove = lista;
+        $scope.actual_list_index = index;
     };
 
     $scope.confirmarRemover = function(){
 
       $http.post("/usuario/rest/removerlistasalva",
           {"id": $scope.list_to_remove.id}).success(function(){
-              $scope.listas_user.listas.splice($scope.list_to_remove, 1);
+              $scope.listas_user.listas.splice($scope.actual_list_index, 1);
           });
     };
     $scope.desfazerRemover = function(){
