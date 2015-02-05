@@ -25,14 +25,15 @@ def salvar_lista(_resp, _usuario_logado, lista):
         s_prod = SystemProduct.get_by_id(produto["id"])
         product = s_prod.create_product().get()
         product.marca = produto["brand"]
-        product.quantidade  =  produto["quant"]
-        product.preco =  produto["preco"]
+        product.quantidade = produto["quant"]
+        product.preco = produto["preco"]
         product.put()
         list_to_save.produtos.append(product.key)
 
     list_to_save.put()
     _usuario_logado.listas.append(list_to_save.key)
     _usuario_logado.put()
+
 
 def listarProdutos(_resp):
     query = Product.query().order(-Product.nome, -Product.marca)
@@ -46,9 +47,11 @@ def listarProdutos(_resp):
     lista_de_Products = json.dumps(lista_de_Products)
     _resp.write(lista_de_Products)
 
+
 def remover(_resp, idProduct):
     prod = Product.get_by_id(idProduct)
     prod.key.delete()
+
 
 def exibirlistasalvas(_resp):
     listas_bd = Lista.query().fetch()
@@ -66,12 +69,13 @@ def exibirlistasusuario(_resp, _usuario_logado):
 
 
 def removerlistasalva(_resp, _usuario_logado, id):
-    lista = filter(lambda lista: lista.id()==id, _usuario_logado.listas).pop()
+    lista = filter(lambda lista: lista.id() == id, _usuario_logado.listas).pop()
     _usuario_logado.listas.remove(lista)
     for produto in lista.get().produtos:
         produto.delete()
     _usuario_logado.put()
     lista.delete()
+
 
 def buscarListas(_resp):
     usuarios = Usuario.query().fetch()

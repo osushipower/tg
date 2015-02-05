@@ -10,7 +10,7 @@
             <form role="form">
                 <div class="form-group">
                     <input id="inputSearch" class="form-control" ng-model="search" title="Busca Produto"
-                           placeholder="Comece pesquisando por um produto :)">
+                           placeholder="Digite aqui o produto que deseja adicionar na sua lista :)">
                 </div>
             </form>
 
@@ -76,13 +76,15 @@
                                 <td class="filterable-cell">
                                     <div class="input-group required">
                                         <input type="number" min="1" class="form-control input-sm"
-                                               ng-model="i.quant">
+                                               required ng-model="i.quant"
+                                                data-fv-notempty-message="Quantidade Obrigatória">
                                     </div>
                                 </td>
                                 <td class="filterable-cell">
                                     <div class="input-group required">
                                         <input type="number" step="any" min="0.01" class="form-control input-sm"
-                                               ng-model="i.preco">
+                                               required ng-model="i.preco"
+                                                data-fv-notempty-message="Preço unitário obrigatório">
                                     </div>
                                 </td>
                                 <td class="filterable-cell">
@@ -195,7 +197,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <p>Sua lista foi salva com sucesso!</p>
+                <p align="center">Sua lista foi salva com sucesso!</p>
             </div>
             <div class="modal-footer">
                 <a class="btn btn-default" href="/perfil">Close</a>

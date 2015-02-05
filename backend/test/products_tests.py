@@ -52,3 +52,5 @@ class RestTests(GAETestCase):
         lista.produtos[0].preco = 5.00
 
         self.assertEquals(u_product.valor_total, 50.00)
+
+
