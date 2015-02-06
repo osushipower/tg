@@ -77,11 +77,12 @@ def removerlistasalva(_resp, _usuario_logado, id):
     lista.delete()
 
 
-def buscarListas(_resp):
+def buscarListas(_resp, _usuario_logado):
     usuarios = Usuario.query().fetch()
     listas = []
     for index, usuario in enumerate(usuarios):
-        listas.append({})
-        listas[index]["usuario"] = usuario.firstname
-        listas[index]["listas_usuario"] = [lista.get().to_dict() for lista in usuario.listas]
+            listas.append({})
+            listas[index]["usuario"] = usuario.firstname
+            listas[index]["listas_usuario"] = [lista.get().to_dict() for lista in usuario.listas]
+    print(listas)
     _resp.write(listas)

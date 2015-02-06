@@ -18,7 +18,8 @@ angular.module("projetolistacompras").controller("UserController", function($sco
 
     $scope.listasexistentes = [];
     $http.post('/usuario/rest/buscarListas').success(function (json) {
-        $scope.listasexistentes = [];
+        $scope.listasexistentes = json || [];
+        console.log(json);
     });
 
     $scope.listatemp = [];
