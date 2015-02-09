@@ -3,7 +3,7 @@ import json
 from produto.model import Product, Lista, SystemProduct
 from estabelecimento.model import Estabelecimento
 from google.appengine.ext import ndb
-
+from datetime import datetime
 
 def salvarProdutoSistema(_resp, nome, marca):
     s_product, error = SystemProduct.create_system_product(nome, marca)

@@ -6,6 +6,7 @@ from produto.model import Product, Lista, SystemProduct
 from usuario.model import Usuario
 from estabelecimento.model import Estabelecimento
 from google.appengine.ext import ndb
+from datetime import datetime
 
 
 def salvar(_resp, nome, marca):
@@ -20,6 +21,9 @@ def salvar(_resp, nome, marca):
 
 def salvar_lista(_resp, _usuario_logado, lista):
     list_to_save = Lista(localcompra=lista["localcompra"], total=lista["total"])
+    d = datetime.today()
+    a = d.year
+    m = datetime.strftime(datetime.now(), '%b')
 
     for produto in lista["produtos"]:
         s_prod = SystemProduct.get_by_id(produto["id"])
@@ -29,6 +33,9 @@ def salvar_lista(_resp, _usuario_logado, lista):
         product.preco = produto["preco"]
         product.put()
         list_to_save.produtos.append(product.key)
+
+    for estab in Estabelecimento.query().filter(-Estabelecimento.nome == lista["localcompra"]).fetch():
+        estab.check_year_existente(a, m)
 
     list_to_save.put()
     _usuario_logado.listas.append(list_to_save.key)

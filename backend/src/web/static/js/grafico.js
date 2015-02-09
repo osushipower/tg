@@ -1,3 +1,8 @@
+var d = new Date();
+var n = d.getFullYear();
+
+
+
 $(function () {
     $('#container').highcharts({
         title: {
@@ -5,12 +10,12 @@ $(function () {
             x: -20 //center
         },
         subtitle: {
-            text: 'Source: projetolistacompras.appspot.com',
+            text: 'Ano: ' + n,
             x: -20
         },
         xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
         },
         yAxis: {
             title: {
