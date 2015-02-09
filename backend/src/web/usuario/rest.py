@@ -83,4 +83,4 @@ def buscarListas(_resp):
         listas.append({})
         listas[index]["usuario"] = usuario.firstname
         listas[index]["listas_usuario"] = [lista.get().to_dict() for lista in usuario.listas]
-    _resp.write(listas)
+    _resp.write(json.dumps(listas))
