@@ -3,6 +3,7 @@ from __future__ import absolute_import, unicode_literals
 from google.appengine.api import users
 import tmpl
 from usuario.model import Usuario
+from datetime import datetime
 
 
 def execute(next_process, handler, dependencies, **kwargs):
@@ -14,7 +15,8 @@ def execute(next_process, handler, dependencies, **kwargs):
         if not usuario_logado:
             usuario_logado=Usuario(firstname=usuario_google.nickname(),
                                    email=usuario_google.email(),
-                                   google_id=google_id)
+                                   google_id=google_id,
+                                   data_ingresso=datetime.today().year)
             usuario_logado.put()
         logout_url=users.create_logout_url('/')
         dependencies['_usuario_logado']=usuario_logado

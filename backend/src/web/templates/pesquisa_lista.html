@@ -2,11 +2,52 @@
 
 {% block main %}
 
-<div class="container" style="background-color: #ffffff">
+<div class="container">
     <div class="row">
-        <div class="col-md-6 column">
-            <div class="table-responsive" style="height: 200px !important; overflow: scroll;">
-                <table class="table table-condensed table-hover">
+        <div class="col-md-12 column" style="background-color: #ffffff; padding-top: 15px">
+            <div class="html ui top attached segment">
+                <div class="ui stackable four column grid">
+                    <div class="ui cards column" ng-repeat="l in listasexistentes">
+                        <div class="card {_ img_gera_rand() _}">
+                            <div class="image">
+                                <img ng-src="{_ img_rand_link _}">
+                            </div>
+                            <div class="content">
+                                <div class="header">{_ l.usuario _}</div>
+                                <div class="meta">
+                                    <a class="group">Friends</a>
+                                </div>
+                                <!--<div class="description">
+                                    Elliot Fu is a film-maker from New York.
+                                </div>-->
+                            </div>
+                            <div class="extra content">
+                                <a class="right floated created">
+                                    {_ l.data_ingresso _}
+                                </a>
+                                <a class="friends">
+                                    <span class="glyphicon glyphicon-list"></span> Listas
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </div>
+    <!--
+    <div class="col-md-6 column">
+
+    </div>
+    -->
+
+</div>
+
+{% endblock %}
+
+<!--
+<table class="table table-condensed table-hover">
                     <tr>
                         <th>Nome Lista</th>
                         <th>Visualizar Lista</th>
@@ -14,16 +55,8 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="i in listasexistentes">
-                        <td>{_ i _}</td>
+                        <td>{_ i.usuario _}</td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 column">
-
-    </div>
-</div>
-
-{% endblock %}
+-->

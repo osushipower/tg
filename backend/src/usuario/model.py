@@ -12,6 +12,7 @@ class Usuario(ndb.Model):
     password = ndb.StringProperty()
     google_id = ndb.StringProperty()
     listas = ndb.KeyProperty(repeated=True)
+    data_ingresso = ndb.IntegerProperty()
 
     @classmethod
     def query_by_google(cls, google_id):

@@ -19,14 +19,24 @@ angular.module("projetolistacompras").controller("UserController", function($sco
     $scope.listasexistentes = [];
     $http.post('/usuario/rest/buscarListas').success(function (json) {
         $scope.listasexistentes = json || [];
-        console.log(json);
+        //console.log(json);
     });
+
+    $scope.img_rand_link = "";
 
     $scope.listatemp = [];
 
     $scope.search = "";
     $scope.precototal = 0;
     $scope.consultaptotal = 0;
+
+    $scope.img_gera_rand = function() {
+        $scope.imagens = ["christian.jpg", "elliot.jpg", "helen.jpg", "jenny.jpg", "justen.jpg",
+                            "matt.jpg", "steve.jpg", "stevie.jpg", "tom.jpg", "veronika.jpg"];
+        $scope.number_rand = Math.floor(Math.random() * $scope.imagens.length);
+        $scope.img_rand_link = "../static/img/avatar/large/" + $scope.imagens[$scope.number_rand];
+        //console.log($scope.img_rand_link)
+    };
 
     $scope.initSelectedBrand = function(produto){
       produto.selected_brand = produto.brands[0];

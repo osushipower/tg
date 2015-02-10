@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d4c42b5-7ee7-4a15-a1e1-5c15832974fd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/web/static/js/grafico.js" afterPath="$PROJECT_DIR$/backend/src/web/static/js/grafico.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/web/templates/home_usuario.html" afterPath="$PROJECT_DIR$/backend/src/web/templates/home_usuario.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/estabelecimento/model.py" afterPath="$PROJECT_DIR$/backend/src/estabelecimento/model.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/web/admin/rest.py" afterPath="$PROJECT_DIR$/backend/src/web/admin/rest.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/christian.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/elliot.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/helen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/jenny.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/justen.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/matt.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/steve.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/stevie.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/tom.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/backend/src/web/static/img/avatar/large/veronika.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/web/templates/base_usuario.html" afterPath="$PROJECT_DIR$/backend/src/web/templates/base_usuario.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/usuario/middleware.py" afterPath="$PROJECT_DIR$/backend/src/usuario/middleware.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/usuario/model.py" afterPath="$PROJECT_DIR$/backend/src/usuario/model.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/web/templates/pesquisa_lista.html" afterPath="$PROJECT_DIR$/backend/src/web/templates/pesquisa_lista.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/web/usuario/rest.py" afterPath="$PROJECT_DIR$/backend/src/web/usuario/rest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/backend/src/web/static/js/controller/user_controller.js" afterPath="$PROJECT_DIR$/backend/src/web/static/js/controller/user_controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tg.iws" />
@@ -21,7 +32,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/tg$Projeto_Lista_Compras.coverage" NAME="Projeto Lista Compras Coverage Results" MODIFIED="1423414934484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/tg$Projeto_Lista_Compras.coverage" NAME="Projeto Lista Compras Coverage Results" MODIFIED="1423506620525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/tg$Unittests_in_tg.coverage" NAME="Unittests in tg Coverage Results" MODIFIED="1421618470251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/tg$Unittests_in_products_tests.coverage" NAME="Unittests in products_tests Coverage Results" MODIFIED="1421710074564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/test" />
   </component>
@@ -40,7 +51,7 @@
       <file leaf-file-name="rest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/web/admin/rest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="169" max-vertical-offset="1037">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1037">
               <caret line="45" column="18" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
@@ -49,25 +60,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="rest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/web/usuario/rest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38643533" vertical-offset="350" max-vertical-offset="1717">
-              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1117" max-vertical-offset="1751">
+              <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
               <folding>
                 <element signature="e#17#73#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/estabelecimento/model.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-              <folding>
-                <element signature="e#24#80#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,29 +75,31 @@
       <file leaf-file-name="user_controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/web/static/js/controller/user_controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1445" max-vertical-offset="2363">
-              <caret line="28" column="16" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="191" max-vertical-offset="2533">
+              <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grafico.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/web/static/js/grafico.js">
+      <file leaf-file-name="base_usuario.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/src/web/templates/base_usuario.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1190">
-              <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+            <state vertical-scroll-proportion="-20.923077" vertical-offset="493" max-vertical-offset="1853">
+              <caret line="61" column="99" selection-start-line="61" selection-start-column="99" selection-end-line="61" selection-end-column="99" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home_usuario.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/web/templates/home_usuario.html">
+      <file leaf-file-name="pesquisa_lista.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/src/web/templates/pesquisa_lista.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2874" max-vertical-offset="3723">
-              <caret line="184" column="46" selection-start-line="184" selection-start-column="46" selection-end-line="184" selection-end-column="46" />
-              <folding />
+            <state vertical-scroll-proportion="0.27960527" vertical-offset="0" max-vertical-offset="1139">
+              <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -126,7 +127,6 @@
         <option value="$PROJECT_DIR$/backend/src/web/home.py" />
         <option value="$PROJECT_DIR$/backend/src/web/contato.py" />
         <option value="$PROJECT_DIR$/backend/src/web/sobre.py" />
-        <option value="$PROJECT_DIR$/backend/src/web/templates/base_usuario.html" />
         <option value="$PROJECT_DIR$/backend/src/web/templates/base_admin.html" />
         <option value="$PROJECT_DIR$/backend/src/web/templates/home_admin.html" />
         <option value="$PROJECT_DIR$/backend/src/web/templates/admin_establishment.html" />
@@ -138,13 +138,16 @@
         <option value="$PROJECT_DIR$/backend/src/web/templates/contato.html" />
         <option value="$PROJECT_DIR$/backend/test/products_tests.py" />
         <option value="$PROJECT_DIR$/backend/src/web/templates/edicao_perfilusuario.html" />
-        <option value="$PROJECT_DIR$/backend/src/web/templates/pesquisa_lista.html" />
-        <option value="$PROJECT_DIR$/backend/src/web/static/js/controller/user_controller.js" />
         <option value="$PROJECT_DIR$/backend/src/web/static/js/grafico.js" />
         <option value="$PROJECT_DIR$/backend/src/web/templates/home_usuario.html" />
         <option value="$PROJECT_DIR$/backend/src/web/admin/rest.py" />
         <option value="$PROJECT_DIR$/backend/src/estabelecimento/model.py" />
+        <option value="$PROJECT_DIR$/backend/src/web/templates/base_usuario.html" />
+        <option value="$PROJECT_DIR$/backend/src/usuario/middleware.py" />
         <option value="$PROJECT_DIR$/backend/src/web/usuario/rest.py" />
+        <option value="$PROJECT_DIR$/backend/src/usuario/model.py" />
+        <option value="$PROJECT_DIR$/backend/src/web/static/js/controller/user_controller.js" />
+        <option value="$PROJECT_DIR$/backend/src/web/templates/pesquisa_lista.html" />
       </list>
     </option>
   </component>
@@ -414,6 +417,104 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="avatar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="large" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fonts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -438,6 +539,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="admin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="usuario" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -510,11 +633,11 @@
       <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src\web\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src\web\static\img\avatar\large" />
+      <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src\web\static\img\avatar" />
+      <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src\web\static\img" />
       <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src\web\static\css" />
       <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src\web\static\js" />
-      <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src\web\static\img" />
-      <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src\web" />
-      <recent name="C:\Users\EdY\Documents\GitHub\tg\backend\src" />
     </key>
   </component>
   <component name="RunManager" selected="App Engine server.Projeto Lista Compras">
@@ -840,7 +963,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1040" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278328" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -850,7 +973,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27172717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3001618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -904,7 +1027,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -983,13 +1106,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.03859251" vertical-offset="0" max-vertical-offset="881">
           <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/usuario/middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2122588" vertical-offset="0" max-vertical-offset="881">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1082,13 +1198,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/web/templates/base_usuario.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7512605" vertical-offset="930" max-vertical-offset="1836">
-          <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/web/static/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08044164" vertical-offset="0" max-vertical-offset="634">
@@ -1178,24 +1287,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/usuario/model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27014756" vertical-offset="0" max-vertical-offset="881">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/web/templates/contato.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22456141" vertical-offset="63" max-vertical-offset="918">
           <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/web/templates/pesquisa_lista.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17894737" vertical-offset="0" max-vertical-offset="855">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1229,19 +1324,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/web/templates/home_usuario.html">
+    <entry file="file://$PROJECT_DIR$/backend/src/estabelecimento/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2874" max-vertical-offset="3723">
-          <caret line="184" column="46" selection-start-line="184" selection-start-column="46" selection-end-line="184" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/web/static/js/controller/user_controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1445" max-vertical-offset="2363">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="16" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding>
+            <element signature="e#24#80#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1255,22 +1344,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/estabelecimento/model.py">
+    <entry file="file://$PROJECT_DIR$/backend/src/web/templates/home_usuario.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="595">
-          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+        <state vertical-scroll-proportion="-89.38461" vertical-offset="22" max-vertical-offset="3723">
+          <caret line="138" column="13" selection-start-line="138" selection-start-column="13" selection-end-line="138" selection-end-column="13" />
           <folding>
-            <element signature="e#24#80#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/usuario/middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48264983" vertical-offset="0" max-vertical-offset="634">
+          <caret line="18" column="70" selection-start-line="18" selection-start-column="70" selection-end-line="18" selection-end-column="70" />
+          <folding>
+            <element signature="e#24#80#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/usuario/model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61671925" vertical-offset="0" max-vertical-offset="634">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/web/templates/base_usuario.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.923077" vertical-offset="493" max-vertical-offset="1853">
+          <caret line="61" column="99" selection-start-line="61" selection-start-column="99" selection-end-line="61" selection-end-column="99" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/web/usuario/rest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38643533" vertical-offset="350" max-vertical-offset="1717">
-          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="1751">
+          <caret line="37" column="40" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
           <folding>
             <element signature="e#17#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/web/static/js/controller/user_controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="191" max-vertical-offset="2533">
+          <caret line="44" column="47" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/web/templates/pesquisa_lista.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27960527" vertical-offset="0" max-vertical-offset="1139">
+          <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
