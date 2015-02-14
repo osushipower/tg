@@ -34,8 +34,8 @@ def salvar_lista(_resp, _usuario_logado, lista):
         product.put()
         list_to_save.produtos.append(product.key)
 
-    for estab in Estabelecimento.query().filter(-Estabelecimento.nome == lista["localcompra"]).fetch():
-        estab.check_year_existente(a, m)
+    for estab in Estabelecimento.query(Estabelecimento.nome == lista["localcompra"]).fetch():
+        estab.check_year_existence(a, m)
 
     list_to_save.put()
     _usuario_logado.listas.append(list_to_save.key)
