@@ -93,5 +93,4 @@ def buscarListas(_resp, _usuario_logado):
             listas[index]["listas_usuario"] = [lista.get().to_dict() for lista in usuario.listas]
             listas[index]["data_ingresso"] = usuario.data_ingresso
     #print(listas)
-    listas = json.dumps(listas)
-    _resp.write(listas)
+    _resp.write(json.dumps(listas))
