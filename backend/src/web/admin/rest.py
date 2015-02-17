@@ -53,3 +53,16 @@ def listarEstabelecimentos(_resp):
 def removerEstab(_resp, idEstab):
     estab = Estabelecimento.get_by_id(int(idEstab))
     estab.key.delete()
+
+
+def listarEstatisticas(_resp):
+    query = Estabelecimento.query()
+
+    def to_dict(c):
+        dct = c.to_dict()
+        dct['id'] = str(c.key.id())
+        return dct
+
+    lista_estatistica = [to_dict(c) for c in query.fetch()]
+    #lista_estatistica = json.dumps(lista_estatistica)
+    _resp.write(json.dumps(lista_estatistica))
