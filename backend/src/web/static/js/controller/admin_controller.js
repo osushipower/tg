@@ -128,7 +128,7 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
         document.getElementById("nameClear").value = "";
         document.getElementById("brandClear").value = "";
     };
-    $scope.$watch($scope.is_ready, function(){
+    $scope.$watch('is_ready', function(){
        if ($scope.is_ready === true){
            $scope.init_chart();
        } 
