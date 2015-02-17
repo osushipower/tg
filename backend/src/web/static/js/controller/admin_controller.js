@@ -2,6 +2,7 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
 
     var d = new Date();
     var n = d.getFullYear();
+    $scope.is_ready = false;
 
     $scope.produtos_sistema = [];
     $scope.search = "";
@@ -21,6 +22,7 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
         $scope.estatisticas = json || [];
         //console.log($scope.num_estatisticas)
         $scope.ordenarEstatistica();
+        $scope.is_ready = true;
     });
 
     $scope.editarProduto = function (p) {
@@ -126,41 +128,48 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
         document.getElementById("nameClear").value = "";
         document.getElementById("brandClear").value = "";
     };
-
-    $('#container').highcharts({
-        title: {
-            text: 'Média de Compras por Supermercado',
-            x: -20 //center
-        },
-        subtitle: {
-            text: 'Ano: ' + n,
-            x: -20
-        },
-        xAxis: {
-            categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-                'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
-        },
-        yAxis: {
-            title: {
-                text: 'Nº de Listas Criadas'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            valueSuffix: '°C'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        },
-        series: $scope.ordenarEstatistica()
+    $scope.$watch($scope.is_ready, function(){
+       if ($scope.is_ready === true){
+           $scope.init_chart();
+       } 
     });
+    
+    $scope.init_chart = function(){
+        $('#container').highcharts({
+            title: {
+                text: 'Média de Compras por Supermercado',
+                x: -20 //center
+            },
+            subtitle: {
+                text: 'Ano: ' + n,
+                x: -20
+            },
+            xAxis: {
+                categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+                    'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+            },
+            yAxis: {
+                title: {
+                    text: 'Nº de Listas Criadas'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '°C'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: $scope.ordenarEstatistica()
+        });
+    };
 
 });
 
