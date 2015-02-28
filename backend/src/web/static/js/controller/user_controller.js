@@ -141,4 +141,5 @@ angular.module("projetolistacompras").controller("UserController", function($sco
     $scope.limparBusca = function () {
         document.getElementById("inputSearch").value = "";
     };
+
 });

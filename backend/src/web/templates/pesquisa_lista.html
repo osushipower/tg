@@ -2,43 +2,43 @@
 
 {% block main %}
 
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 column" style="background-color: #ffffff; padding-top: 15px">
-                <div class="ui stackable four column grid">
-                    <div class="ui card column" ng-repeat="l in listasexistentes">
-                        <div class="card {_ img_gera_rand() _}">
-                            <div class="image">
-                                <img ng-src="{_ img_rand_link _}">
-                            </div>
-                            <div class="content">
-                                <div class="header">{_ l.usuario _}</div>
-                                <div class="meta">
-                                    <a class="group">Friends</a>
-                                </div>
-                                <!--<div class="description">
-                                    Elliot Fu is a film-maker from New York.
-                                </div>-->
-                            </div>
-                            <div class="extra content">
-                                <a class="right floated created">
-                                    {_ l.data_ingresso _}
-                                </a>
-                                <a class="friends">
-                                    <span class="glyphicon glyphicon-list"></span> Listas
-                                </a>
-                            </div>
+            <div class="ui cards">
+                <div class="ui card" ng-repeat="l in listasexistentes">
+                    <div class="image {_ img_gera_rand() _}">
+                        <img ng-src="{_ img_rand_link _}">
+                    </div>
+                    <div class="content">
+                        <div class="header">{_ l.usuario _}</div>
+                        <div class="meta">
+                            <a class="group">Friends</a>
                         </div>
+                        <!--<div class="description">
+                            Elliot Fu is a film-maker from New York.
+                        </div>-->
+                    </div>
+                    <div class="extra content">
+                        <a class="right floated created">
+                            {_ l.data_ingresso _}
+                        </a>
+                        <a class="friends">
+                            <span class="glyphicon glyphicon-list"></span> Listas
+                        </a>
                     </div>
                 </div>
-            <br/>
+            </div>
         </div>
+        <br/>
     </div>
-    <!--
-    <div class="col-md-6 column">
+</div>
+<!--
+<div class="col-md-6 column">
 
-    </div>
-    -->
+</div>
+-->
 
 </div>
 
