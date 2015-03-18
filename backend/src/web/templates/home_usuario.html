@@ -75,16 +75,16 @@
                                 </td>
                                 <td class="filterable-cell">
                                     <div class="input-group required">
-                                        <input type="number" min="1" class="form-control input-sm"
-                                               required ng-model="i.quant"
-                                                data-fv-notempty-message="Quantidade Obrigatória">
+                                        <input type="text" name="number" ng-model="num_things" valid-number
+                                               class="form-control input-sm" required
+                                               data-fv-notempty-message="Quantidade Obrigatória">
                                     </div>
                                 </td>
                                 <td class="filterable-cell">
                                     <div class="input-group required">
-                                        <input type="number" step="any" min="0.01" class="form-control input-sm"
-                                               required ng-model="i.preco"
-                                                data-fv-notempty-message="Preço unitário obrigatório">
+                                        <input type="text" name="name" decimal-number class="form-control input-sm"
+                                               ng-model="wks.number" required
+                                               data-fv-notempty-message="Preço unitário obrigatório">
                                     </div>
                                 </td>
                                 <td class="filterable-cell">

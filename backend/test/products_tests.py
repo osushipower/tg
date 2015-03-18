@@ -39,7 +39,6 @@ class RestTests(GAETestCase):
     def test_create_list(self):
         lista = Lista(nome="minha lista")
         lista.put()
-
         s_product = SystemProduct.get_by_id("café")
         u_product = s_product.create_product().get()
         lista.produtos.append(u_product)

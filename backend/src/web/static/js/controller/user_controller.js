@@ -1,4 +1,8 @@
-angular.module("projetolistacompras").controller("UserController", function($scope, $http) {
+angular.module("projetolistacompras").controller("UserController", function ($scope, $http) {
+
+    $scope.wks = {number: 1, name: 'testing'};
+
+    $scope.onlyNumbers = /^\d+$/;
 
     $scope.produtos_sistema = [];
 
@@ -12,9 +16,9 @@ angular.module("projetolistacompras").controller("UserController", function($sco
     });
 
     $scope.estabelecimentos = [];
-	$http.post('/admin/rest/listarEstabelecimentos').success(function (json) {
-		$scope.estabelecimentos = json || [];
-	});
+    $http.post('/admin/rest/listarEstabelecimentos').success(function (json) {
+        $scope.estabelecimentos = json || [];
+    });
 
     $scope.listasexistentes = [];
     $http.post('/usuario/rest/buscarListas').success(function (json) {
@@ -30,27 +34,27 @@ angular.module("projetolistacompras").controller("UserController", function($sco
     $scope.precototal = 0;
     $scope.consultaptotal = 0;
 
-    $scope.img_gera_rand = function() {
+    $scope.img_gera_rand = function () {
         $scope.imagens = ["christian.jpg", "elliot.jpg", "helen.jpg", "jenny.jpg", "justen.jpg",
-                            "matt.jpg", "steve.jpg", "stevie.jpg", "tom.jpg", "veronika.jpg"];
+            "matt.jpg", "steve.jpg", "stevie.jpg", "tom.jpg", "veronika.jpg"];
         $scope.number_rand = Math.floor(Math.random() * $scope.imagens.length);
         $scope.img_rand_link = "../static/img/avatar/large/" + $scope.imagens[$scope.number_rand];
         //console.log($scope.img_rand_link)
     };
 
-    $scope.initSelectedBrand = function(produto){
-      produto.selected_brand = produto.brands[0];
+    $scope.initSelectedBrand = function (produto) {
+        produto.selected_brand = produto.brands[0];
     };
 
-    $scope.setBrand = function(produto, marca){
+    $scope.setBrand = function (produto, marca) {
         produto.selected_brand = marca;
     };
 
-    $scope.initLocalCompra = function(){
-      $scope.local_compra = $scope.estabelecimentos[0].nome;
+    $scope.initLocalCompra = function () {
+        $scope.local_compra = $scope.estabelecimentos[0].nome;
     };
 
-    $scope.listIsEmpty = function(){
+    $scope.listIsEmpty = function () {
         return $scope.listatemp.length === 0;
     };
 
@@ -64,27 +68,27 @@ angular.module("projetolistacompras").controller("UserController", function($sco
         $scope.precototal = parseFloat(Math.round($scope.precototal * 100) / 100).toFixed(2);
     };
 
-    $scope.visualizarLista =  function(l, lt) {
+    $scope.visualizarLista = function (l, lt) {
         $scope.consultaptotal = 0;
         $scope.temp = l.produtos;
         $scope.consultaptotal = lt;
         $scope.consultaptotal = parseFloat(Math.round($scope.consultaptotal * 100) / 100).toFixed(2);
     };
 
-    $scope.removerLista = function(lista, index){
-      $scope.list_to_remove = lista;
+    $scope.removerLista = function (lista, index) {
+        $scope.list_to_remove = lista;
         $scope.actual_list_index = index;
     };
 
-    $scope.confirmarRemover = function(){
+    $scope.confirmarRemover = function () {
 
-      $http.post("/usuario/rest/removerlistasalva",
-          {"id": $scope.list_to_remove.id}).success(function(){
-              $scope.listas_user.listas.splice($scope.actual_list_index, 1);
-          });
+        $http.post("/usuario/rest/removerlistasalva",
+            {"id": $scope.list_to_remove.id}).success(function () {
+                $scope.listas_user.listas.splice($scope.actual_list_index, 1);
+            });
     };
-    $scope.desfazerRemover = function(){
-      $scope.list_to_remove  = null;
+    $scope.desfazerRemover = function () {
+        $scope.list_to_remove = null;
     };
 
     $scope.editarProduto = function (p) {
@@ -110,13 +114,15 @@ angular.module("projetolistacompras").controller("UserController", function($sco
     };
 
     $scope.adicionarProdutoListaTemp = function (p) {
-        if($scope.listatemp.filter(function(produto){return p.id === produto.id}).length === 0)
-        $scope.listatemp.push(p);
+        if ($scope.listatemp.filter(function (produto) {
+                return p.id === produto.id
+            }).length === 0)
+            $scope.listatemp.push(p);
     };
 
     $scope.salvarLista = function () {
         var data = {};
-        var preco_total  = 0.0;
+        var preco_total = 0.0;
         data["produtos"] = [];
         var length = $scope.listatemp.length;
 
@@ -134,7 +140,7 @@ angular.module("projetolistacompras").controller("UserController", function($sco
         $http.post("/usuario/rest/salvar_lista", {lista: data});
     };
 
-    $scope.fecharModal = function() {
+    $scope.fecharModal = function () {
         $("#mConfirmacao").hide();
     };
 
@@ -142,4 +148,66 @@ angular.module("projetolistacompras").controller("UserController", function($sco
         document.getElementById("inputSearch").value = "";
     };
 
+});
+
+angular.module("projetolistacompras").directive('decimalNumber', function () {
+    return {
+        restrict: 'A',
+        scope: {
+            inputValue: '=ngModel'
+        },
+        link: function (scope) {
+            scope.$watch('inputValue', function (newValue, oldValue) {
+                if (String(newValue) == "" || typeof(newValue) == 'undefined') {
+                    return;
+                }
+                var refresh = false;
+                var val = String(newValue);
+                if (val.indexOf(',') != -1) {
+                    refresh = true;
+                    val = val.replace(/,/g, '.');
+                }
+
+                var index_dot,
+                    arr = val.split("");
+                if (arr.length === 0) return;
+                if (arr.length === 1 && (arr[0] == '-' || arr[0] === '.')) return;
+                if (arr.length === 2 && val === '-.') return;
+                if (isNaN(val) || ((index_dot = val.indexOf('.')) != -1 && val.length - index_dot > 3 )) {
+                    scope.inputValue = oldValue;
+                } else if (refresh) {
+                    scope.inputValue = val;
+                }
+            });
+        }
+    };
+});
+
+angular.module("projetolistacompras").directive('validNumber', function() {
+  return {
+    require: '?ngModel',
+    link: function(scope, element, attrs, ngModelCtrl) {
+      if(!ngModelCtrl) {
+        return;
+      }
+
+      ngModelCtrl.$parsers.push(function(val) {
+        if (angular.isUndefined(val)) {
+            var val = '';
+        }
+        var clean = val.replace( /[^0-9]+/g, '');
+        if (val !== clean) {
+          ngModelCtrl.$setViewValue(clean);
+          ngModelCtrl.$render();
+        }
+        return clean;
+      });
+
+      element.bind('keypress', function(event) {
+        if(event.keyCode === 32) {
+          event.preventDefault();
+        }
+      });
+    }
+  };
 });
