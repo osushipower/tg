@@ -33,4 +33,4 @@ class Estabelecimento(ndb.Model):
         for i in self.info_estab:
             meses_t = i.get('Months')
             for c in meses_t:
-                print meses_t[c]
+                print meses_t

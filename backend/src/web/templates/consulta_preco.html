@@ -1,0 +1,59 @@
+{% extends 'templates/base_usuario.html' %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 column" style="background-color: #ffffff">
+            <br/>
+
+            <form role="form">
+                <div class="form-group">
+                    <input id="inputSearch" class="form-control" ng-model="search" title="Busca Produto"
+                           placeholder="Digite aqui o produto que deseja adicionar na sua lista :)">
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col-md-6 column">
+
+                    <h3>Consultar Preços: </h3>
+
+                    <div ng-show="search.length >= 1" style="height: 300px !important; overflow: scroll;">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>Nome Produto</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="p in produtos_sistema | filter: search track by $id(p)">
+                                <td class="filterable-cell">{_ p.id _}</td>
+                                <td class="filterable-cell">
+                                    <button class="btn btn-info" title="Adicionar"
+                                            ng-click="busca_preco_prod(p.id); limparBusca()">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                    </div>
+                </div>
+
+                <div class="col-md-6 column">
+                    <h3>Preços por Mercado:</h3>
+                    <br/>
+
+                    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                    <br/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

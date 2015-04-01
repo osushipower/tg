@@ -3,6 +3,7 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
     var d = new Date();
     var n = d.getFullYear();
     $scope.is_ready = false;
+    $scope.ordem_ano = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     $scope.produtos_sistema = [];
     $scope.search = "";
@@ -20,7 +21,7 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
     $scope.estatisticas = [];
     $http.post('/admin/rest/listarEstatisticas').success(function (json) {
         $scope.estatisticas = json || [];
-        //console.log($scope.num_estatisticas)
+        console.log($scope.estatisticas);
         $scope.is_ready = true;
     });
 
@@ -28,42 +29,31 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
         p.editando = true;
     };
 
-
-
-    //COMEÇA AQUI
-    //COMEÇA AQUI
-    //COMEÇA AQUI
-
-
-
     $scope.lista_estatistica = [];
     $scope.ordenarEstatistica = function () {
-
         for (var i = 0; i < $scope.estatisticas.length; i++) {
             for (var j in $scope.estatisticas[i].info_estab) {
                 if ($scope.estatisticas[i].info_estab[j].Ano == n) {
                     var temp_values = [];
-                    for (var k in $scope.estatisticas[i].info_estab[j].Months) {
-                        temp_values.push($scope.estatisticas[i].info_estab[j].Months[k]);
+                    for (var m = 0; m < $scope.ordem_ano.length; m++) {
+                        for (var k in $scope.estatisticas[i].info_estab[j].Months) {
+                            console.log(k);
+                            if ($scope.ordem_ano[m] == k) {
+                                console.log($scope.ordem_ano[m]);
+                                temp_values.push($scope.estatisticas[i].info_estab[j].Months[k]);
+                            }
+                        }
                     }
                 }
             }
             $scope.lista_estatistica.push({name: '' + $scope.estatisticas[i].nome, data: temp_values});
-            for (var l in $scope.lista_estatistica){
+            /*for (var l in $scope.lista_estatistica) {
                 console.log($scope.lista_estatistica[l].name);
                 console.log($scope.lista_estatistica[l].data);
-            }
+            }*/
         }
         return $scope.lista_estatistica
     };
-
-
-
-    //TERMINA AQUI
-    //TERMINA AQUI
-    //TERMINA AQUI
-
-
 
     $scope.cadastrarProduto = function () {
         var produto = {
@@ -127,13 +117,13 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
         document.getElementById("nameClear").value = "";
         document.getElementById("brandClear").value = "";
     };
-    $scope.$watch('is_ready', function(){
-       if ($scope.is_ready === true){
-           $scope.init_chart();
-       } 
+    $scope.$watch('is_ready', function () {
+        if ($scope.is_ready === true) {
+            $scope.init_chart();
+        }
     });
-    
-    $scope.init_chart = function(){
+
+    $scope.init_chart = function () {
         $('#container').highcharts({
             title: {
                 text: 'Média de Compras por Supermercado',
@@ -144,8 +134,7 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
                 x: -20
             },
             xAxis: {
-                categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-                    'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+                categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
             },
             yAxis: {
                 title: {

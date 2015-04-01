@@ -43,7 +43,8 @@
             <ul class="nav navbar-nav">
                 {% set menu = [
                 ('Nova Lista', '/lista'),
-                ('Navegar', '/buscar')
+                ('Navegar', '/buscar'),
+                ('Consultar', '/consulta')
                 ] %}
                 {% for name, href in menu %}
                 <li {% if request.path.startswith(href) %} class="active" {% endif %}>
@@ -97,16 +98,12 @@
 
 <!--<script type="text/javascript" src="../static/js/jquery.min.js"></script>-->
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<!--<script type="text/javascript" src="../static/js/jquery.numeric_input.min.js"></script>
-<script>
-$(function() {
-    $("input.numeric_input").numeric_input();
-});
-</script>-->
 <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../static/js/angular.min.js"></script>
 <script type="text/javascript" src="../static/js/app.js"></script>
 <script type="text/javascript" src="../static/js/controller/user_controller.js"></script>
+<script type="text/javascript" src="../static/js/highcharts.js"></script>
+<script type="text/javascript" src="../static/js/modules/exporting.js"></script>
 
 
 </html>

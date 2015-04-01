@@ -75,7 +75,7 @@
                                 </td>
                                 <td class="filterable-cell">
                                     <div class="input-group required">
-                                        <input type="text" name="number" ng-model="num_things" valid-number
+                                        <input type="text" name="number" ng-model="i.quant" valid-number
                                                class="form-control input-sm" required
                                                data-fv-notempty-message="Quantidade Obrigatória">
                                     </div>
@@ -83,7 +83,7 @@
                                 <td class="filterable-cell">
                                     <div class="input-group required">
                                         <input type="text" name="name" decimal-number class="form-control input-sm"
-                                               ng-model="wks.number" required
+                                               ng-model="i.preco" required
                                                data-fv-notempty-message="Preço unitário obrigatório">
                                     </div>
                                 </td>
@@ -114,7 +114,7 @@
                             <button type="button" class="btn btn-success" data-toggle="modal"
                                     data-target="#mConfirmacao"
                                     ng-click="calcularPrecoTotal(0)" title="Salvar Lista"
-                                    ng-disabled="listIsEmpty()"><span
+                                    ng-disabled="listIsEmpty() || has_empty_fields()"><span
                                     class="glyphicon glyphicon-floppy-disk"></span> Salvar Lista
                             </button>
                             {% else %}

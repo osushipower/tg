@@ -1,8 +1,14 @@
 angular.module("projetolistacompras").controller("UserController", function ($scope, $http) {
 
-    $scope.wks = {number: 1, name: 'testing'};
+    var d = new Date();
+    var n = d.getFullYear();
+    var m = d.getMonth();
+
+    $scope.wks = {number: '', name: 'testing', num_things: ""};
 
     $scope.onlyNumbers = /^\d+$/;
+
+    $scope.is_ready = true;
 
     $scope.produtos_sistema = [];
 
@@ -120,6 +126,15 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
             $scope.listatemp.push(p);
     };
 
+    $scope.has_empty_fields = function () {
+        var length = $scope.listatemp.length;
+        for (var i = 0; i < length; i++) {
+            if ($scope.listatemp[i].quant == 0 || $scope.listatemp[i].preco == 0)
+                return true;
+        }
+        return false;
+    };
+
     $scope.salvarLista = function () {
         var data = {};
         var preco_total = 0.0;
@@ -148,6 +163,97 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
         document.getElementById("inputSearch").value = "";
     };
 
+    $scope.preco_produtos_estab = [];
+    $scope.busca_preco_prod = function (n) {
+        console.log(n);
+        $http.post("/usuario/rest/buscar_produtos_recentes", n).success(function (json) {
+            $scope.preco_produtos_estab = json || [];
+            $scope.is_ready = true;
+            console.log("Chegou Aqui! :)");
+        });
+    };
+
+    $scope.lista_precos = [];
+    $scope.ordenar_precos_estab = function () {
+        for (var i = 0; i < $scope.preco_produtos_estab.length; i++) {
+            console.log($scope.preco_produtos_estab[i]);
+            /*for (var j in $scope.estatisticas[i].info_estab) {
+             if ($scope.estatisticas[i].info_estab[j].Ano == n) {
+             var temp_values = [];
+             for (var m = 0; m < $scope.ordem_ano.length; m++) {
+             for (var k in $scope.estatisticas[i].info_estab[j].Months) {
+             console.log(k);
+             if ($scope.ordem_ano[m] == k) {
+             console.log($scope.ordem_ano[m]);
+             temp_values.push($scope.estatisticas[i].info_estab[j].Months[k]);
+             }
+             }
+             }
+             }
+             }*/
+            //$scope.lista_precos.push({name: '' + $scope.preco_produtos_estab[i].nome, data: temp_values});
+            /*for (var l in $scope.lista_estatistica) {
+             console.log($scope.lista_estatistica[l].name);
+             console.log($scope.lista_estatistica[l].data);
+             }*/
+        }
+        $scope.lista_precos.push({name: 'Carrefour', data: [2.40]}, {name: 'Extra', data: [1.60]},
+            {name: 'Dia', data: [2.10]}, {name: 'Walmart', data: [2.00]});
+
+        return $scope.lista_precos
+    };
+
+    $scope.lista_precos_estab = [];
+    $scope.ordenarEstatistica = function () {
+
+    };
+
+    $scope.$watch('is_ready', function () {
+        if ($scope.is_ready === true) {
+            $scope.init_chart();
+        }
+    });
+
+    $scope.init_chart = function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Preços por Mercado'
+            },
+            subtitle: {
+                text: 'Ano: ' + n
+            },
+            xAxis: {
+                categories: [m],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Preço (R$)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>R$ {point.y:.2f}</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: $scope.ordenar_precos_estab()
+        });
+    };
+
+
 });
 
 angular.module("projetolistacompras").directive('decimalNumber', function () {
@@ -159,6 +265,7 @@ angular.module("projetolistacompras").directive('decimalNumber', function () {
         link: function (scope) {
             scope.$watch('inputValue', function (newValue, oldValue) {
                 if (String(newValue) == "" || typeof(newValue) == 'undefined') {
+                    scope.inputValue = '';
                     return;
                 }
                 var refresh = false;
@@ -183,31 +290,31 @@ angular.module("projetolistacompras").directive('decimalNumber', function () {
     };
 });
 
-angular.module("projetolistacompras").directive('validNumber', function() {
-  return {
-    require: '?ngModel',
-    link: function(scope, element, attrs, ngModelCtrl) {
-      if(!ngModelCtrl) {
-        return;
-      }
+angular.module("projetolistacompras").directive('validNumber', function () {
+    return {
+        require: '?ngModel',
+        link: function (scope, element, attrs, ngModelCtrl) {
+            if (!ngModelCtrl) {
+                return;
+            }
 
-      ngModelCtrl.$parsers.push(function(val) {
-        if (angular.isUndefined(val)) {
-            var val = '';
-        }
-        var clean = val.replace( /[^0-9]+/g, '');
-        if (val !== clean) {
-          ngModelCtrl.$setViewValue(clean);
-          ngModelCtrl.$render();
-        }
-        return clean;
-      });
+            ngModelCtrl.$parsers.push(function (val) {
+                if (angular.isUndefined(val)) {
+                    var val = '';
+                }
+                var clean = val.replace(/^[0]*[^0-9]*/g, '');
+                if (val !== clean) {
+                    ngModelCtrl.$setViewValue(clean);
+                    ngModelCtrl.$render();
+                }
+                return clean;
+            });
 
-      element.bind('keypress', function(event) {
-        if(event.keyCode === 32) {
-          event.preventDefault();
+            element.bind('keypress', function (event) {
+                if (event.keyCode === 32) {
+                    event.preventDefault();
+                }
+            });
         }
-      });
-    }
-  };
+    };
 });

@@ -29,8 +29,8 @@ def salvar_lista(_resp, _usuario_logado, lista):
         s_prod = SystemProduct.get_by_id(produto["id"])
         product = s_prod.create_product().get()
         product.marca = produto["brand"]
-        product.quantidade = produto["quant"]
-        product.preco = produto["preco"]
+        product.quantidade = int(produto["quant"])
+        product.preco = float(produto["preco"])
         product.put()
         list_to_save.produtos.append(product.key)
 
@@ -89,9 +89,34 @@ def buscarListas(_resp, _usuario_logado):
     usuarios = Usuario.query().fetch()
     listas = []
     for index, usuario in enumerate(usuarios):
-            listas.append({})
-            listas[index]["usuario"] = usuario.firstname
-            listas[index]["listas_usuario"] = [lista.get().to_dict() for lista in usuario.listas]
-            listas[index]["data_ingresso"] = usuario.data_ingresso
-    #print(listas)
+        listas.append({})
+        listas[index]["usuario"] = usuario.firstname
+        listas[index]["listas_usuario"] = [lista.get().to_dict() for lista in usuario.listas]
+        listas[index]["data_ingresso"] = usuario.data_ingresso
+    # print(listas)
     _resp.write(json.dumps(listas))
+
+
+def buscar_produtos_recentes(_resp, nome_produto):
+    estabelecimentos = Estabelecimento.query().fetch()
+
+    result = {}
+
+    for estabelecimento in estabelecimentos:
+        result[estabelecimento.nome] = {}
+        listas_por_estabelecimento = Lista.query(Lista.localcompra == estabelecimento.nome).fetch()
+        dia_atual = datetime.now().timetuple().tm_yday
+        listas_da_ultima_semana = filter(lambda lista: lista.datacompra.timetuple().tm_yday >= (dia_atual - 7) and \
+                                                       lista.datacompra.timetuple().tm_yday <= dia_atual,
+                                         listas_por_estabelecimento)
+
+        for lista in listas_da_ultima_semana:
+            produtos = ndb.get_multi(lista.produtos)
+            produto_procurado = filter(lambda produto: produto.nome == nome_produto, produtos)
+            if produto_procurado:
+                if result[estabelecimento.nome]:
+                    if produto_procurado[0].preco < result[estabelecimento.nome][produto_procurado[0].nome]:
+                        result[estabelecimento.nome] = {produto_procurado[0].nome: produto_procurado[0].preco}
+                else:
+                    result[estabelecimento.nome] = {produto_procurado[0].nome: produto_procurado[0].preco}
+    _resp.write(json.dumps(result))
