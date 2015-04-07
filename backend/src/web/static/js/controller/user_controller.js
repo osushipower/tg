@@ -164,9 +164,9 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     };
 
     $scope.preco_produtos_estab = [];
-    $scope.busca_preco_prod = function (n) {
-        console.log(n);
-        $http.post("/usuario/rest/buscar_produtos_recentes", n).success(function (json) {
+    $scope.busca_preco_prod = function (produto) {
+        console.log(produto);
+        $http.post("/usuario/rest/buscar_produtos_recentes", {produto: produto}).success(function (json) {
             $scope.preco_produtos_estab = json || [];
             $scope.is_ready = true;
             console.log("Chegou Aqui! :)");
