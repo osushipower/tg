@@ -97,7 +97,7 @@ def buscarListas(_resp, _usuario_logado):
     _resp.write(json.dumps(listas))
 
 
-def buscar_produtos_recentes(_resp, nome_produto):
+def buscar_produtos_recentes(_resp, produto):
     estabelecimentos = Estabelecimento.query().fetch()
 
     result = {}
