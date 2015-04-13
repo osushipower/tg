@@ -3,12 +3,15 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     var d = new Date();
     var n = d.getFullYear();
     var m = d.getMonth();
+    var nome_prod = "";
+    $scope.ordem_ano = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
     $scope.wks = {number: '', name: 'testing', num_things: ""};
 
     $scope.onlyNumbers = /^\d+$/;
 
-    $scope.is_ready = true;
+    $scope.is_ready = false;
 
     $scope.produtos_sistema = [];
 
@@ -29,7 +32,6 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     $scope.listasexistentes = [];
     $http.post('/usuario/rest/buscarListas').success(function (json) {
         $scope.listasexistentes = json || [];
-        //console.log(json);
     });
 
     $scope.img_rand_link = "";
@@ -45,7 +47,6 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
             "matt.jpg", "steve.jpg", "stevie.jpg", "tom.jpg", "veronika.jpg"];
         $scope.number_rand = Math.floor(Math.random() * $scope.imagens.length);
         $scope.img_rand_link = "../static/img/avatar/large/" + $scope.imagens[$scope.number_rand];
-        //console.log($scope.img_rand_link)
     };
 
     $scope.initSelectedBrand = function (produto) {
@@ -112,7 +113,6 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
             "nome": $scope.inputNome,
             "marca": $scope.inputMarca
         };
-        console.log(produto);
         $http.post('/usuario/rest/salvar', produto).success(function (json) {
             produto.id = json.id;
             $scope.produtos_sistema.push(produto)
@@ -165,47 +165,21 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
 
     $scope.preco_produtos_estab = [];
     $scope.busca_preco_prod = function (nome_produto) {
-        console.log(nome_produto);
+        nome_prod = nome_produto;
+        $scope.is_ready = false;
         $http.post("/usuario/rest/buscar_produtos_recentes", {nome_produto: nome_produto}).success(function (json) {
             $scope.preco_produtos_estab = json || [];
             $scope.is_ready = true;
-            console.log("Chegou Aqui! :)");
         });
     };
 
     $scope.lista_precos = [];
-    $scope.ordenar_precos_estab = function () {
-        for (var i = 0; i < $scope.preco_produtos_estab.length; i++) {
-            console.log($scope.preco_produtos_estab[i]);
-            /*for (var j in $scope.estatisticas[i].info_estab) {
-             if ($scope.estatisticas[i].info_estab[j].Ano == n) {
-             var temp_values = [];
-             for (var m = 0; m < $scope.ordem_ano.length; m++) {
-             for (var k in $scope.estatisticas[i].info_estab[j].Months) {
-             console.log(k);
-             if ($scope.ordem_ano[m] == k) {
-             console.log($scope.ordem_ano[m]);
-             temp_values.push($scope.estatisticas[i].info_estab[j].Months[k]);
-             }
-             }
-             }
-             }
-             }*/
-            //$scope.lista_precos.push({name: '' + $scope.preco_produtos_estab[i].nome, data: temp_values});
-            /*for (var l in $scope.lista_estatistica) {
-             console.log($scope.lista_estatistica[l].name);
-             console.log($scope.lista_estatistica[l].data);
-             }*/
+    $scope.ordenar_precos_estab = function (p) {
+        $scope.lista_precos = [];
+        for (var i in p) {
+            $scope.lista_precos.push({name: i, data: [p[i]]});
         }
-        $scope.lista_precos.push({name: 'Carrefour', data: [2.40]}, {name: 'Extra', data: [1.60]},
-            {name: 'Dia', data: [2.10]}, {name: 'Walmart', data: [2.00]});
-
         return $scope.lista_precos
-    };
-
-    $scope.lista_precos_estab = [];
-    $scope.ordenarEstatistica = function () {
-
     };
 
     $scope.$watch('is_ready', function () {
@@ -223,10 +197,10 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
                 text: 'Preços por Mercado'
             },
             subtitle: {
-                text: 'Ano: ' + n
+                text: 'Data da Consulta: ' + $scope.ordem_ano[m] + '/' + n
             },
             xAxis: {
-                categories: [m],
+                categories: [nome_prod],
                 crosshair: true
             },
             yAxis: {
@@ -249,7 +223,7 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
                     borderWidth: 0
                 }
             },
-            series: $scope.ordenar_precos_estab()
+            series: $scope.ordenar_precos_estab($scope.preco_produtos_estab)
         });
     };
 

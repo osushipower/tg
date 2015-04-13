@@ -21,7 +21,6 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
     $scope.estatisticas = [];
     $http.post('/admin/rest/listarEstatisticas').success(function (json) {
         $scope.estatisticas = json || [];
-        console.log($scope.estatisticas);
         $scope.is_ready = true;
     });
 
@@ -37,9 +36,7 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
                     var temp_values = [];
                     for (var m = 0; m < $scope.ordem_ano.length; m++) {
                         for (var k in $scope.estatisticas[i].info_estab[j].Months) {
-                            console.log(k);
                             if ($scope.ordem_ano[m] == k) {
-                                console.log($scope.ordem_ano[m]);
                                 temp_values.push($scope.estatisticas[i].info_estab[j].Months[k]);
                             }
                         }
@@ -47,10 +44,6 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
                 }
             }
             $scope.lista_estatistica.push({name: '' + $scope.estatisticas[i].nome, data: temp_values});
-            /*for (var l in $scope.lista_estatistica) {
-                console.log($scope.lista_estatistica[l].name);
-                console.log($scope.lista_estatistica[l].data);
-            }*/
         }
         return $scope.lista_estatistica
     };
@@ -60,7 +53,6 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
             "nome": $scope.inputNome,
             "marca": $scope.inputMarca
         };
-        //console.log(produto);
 
         $http.post('/admin/rest/salvarProdutoSistema', produto).success(function (json) {
 
@@ -87,7 +79,6 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
 
     $scope.removerElemento = function (produto, index) {
         $scope.produtos_sistema.splice(index, 1);
-        console.log(produto);
         $http.post('/admin/rest/removerProdutoSistema',
             {"name": produto.id}
         );
