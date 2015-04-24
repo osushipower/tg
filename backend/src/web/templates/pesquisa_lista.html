@@ -16,15 +16,13 @@
                         <div class="meta">
                             <a class="group">Friends</a>
                         </div>
-                        <!--<div class="description">
-                            Elliot Fu is a film-maker from New York.
-                        </div>-->
                     </div>
                     <div class="extra content">
                         <a class="right floated created">
                             {_ l.data_ingresso _}
                         </a>
-                        <a class="friends">
+                        <a class="friends" ng-click="enviarDadosModal(l)"
+                           data-toggle="modal" data-target="#mVisualizarListas">
                             <span class="glyphicon glyphicon-list"></span> Listas
                         </a>
                     </div>
@@ -34,13 +32,93 @@
         <br/>
     </div>
 </div>
-<!--
-<div class="col-md-6 column">
 
-</div>
--->
+<div class="modal fade" id="mVisualizarListas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Listas do Usuário:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive" style="height: 200px !important; overflow: scroll;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                        <tr>
+                            <th>Visualizar</th>
+                            <th>Lista</th>
+                            <th>Data</th>
+                            <th>Local</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="t in listas_usuario_temp.listas_usuario">
+                            <td>
+                                <button class="btn btn-info" ng-click="visualizarLista(t, t.total)"
+                                        data-toggle="modal"
+                                        data-target="#mVerificar">
+                                    <span class="glyphicon glyphicon-eye-open"></span></button>
+                            </td>
+                            <td>{_t.nome_}</td>
+                            <td>{_t.datacompra_}</td>
+                            <td>{_t.localcompra_}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-</div>
+<div class="modal fade" id="mVerificar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">Lista:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive" style="height: 200px !important; overflow: scroll;">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                        <tr>
+                            <th>Produto:</th>
+                            <th>Marca</th>
+                            <th>Quantidade:</th>
+                            <th>Preço(un):</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="t in temp track by $index">
+                            <td>{_ t.nome _}</td>
+                            <td>{_ t.marca _}</td>
+                            <td>{_ t.quantidade _}</td>
+                            <td>R$ {_ t.preco _}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/>
+
+                <p><strong>Preço Total:</strong> R$ {_ consultaptotal _}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 {% endblock %}
 

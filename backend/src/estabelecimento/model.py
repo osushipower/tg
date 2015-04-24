@@ -30,7 +30,7 @@ class Estabelecimento(ndb.Model):
                                                                              'May': 0, 'Jun': 0, 'Jul': 0, 'Aug': 0,
                                                                              'Sep': 0, 'Oct': 0, 'Nov': 0, 'Dec': 0}})
                 self.check_year_existence(ano_atual, mes_atual)
-        for i in self.info_estab:
-            meses_t = i.get('Months')
-            for c in meses_t:
-                print meses_t
+        #for i in self.info_estab:
+         #   meses_t = i.get('Months')
+          #  for c in meses_t:
+           #     print meses_t

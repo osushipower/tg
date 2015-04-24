@@ -13,6 +13,8 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
 
     $scope.is_ready = false;
 
+    $scope.already_called = false;
+
     $scope.produtos_sistema = [];
 
     $http.post('/admin/rest/listarProdutosSistema').success(function (json) {
@@ -42,12 +44,17 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     $scope.precototal = 0;
     $scope.consultaptotal = 0;
 
+
     $scope.img_gera_rand = function () {
-        $scope.imagens = ["christian.jpg", "elliot.jpg", "helen.jpg", "jenny.jpg", "justen.jpg",
-            "matt.jpg", "steve.jpg", "stevie.jpg", "tom.jpg", "veronika.jpg"];
-        $scope.number_rand = Math.floor(Math.random() * $scope.imagens.length);
-        $scope.img_rand_link = "../static/img/avatar/large/" + $scope.imagens[$scope.number_rand];
+        if ($scope.already_called == false) {
+            $scope.imagens = ["christian.jpg", "elliot.jpg", "helen.jpg", "jenny.jpg", "justen.jpg",
+                "matt.jpg", "steve.jpg", "stevie.jpg", "tom.jpg", "veronika.jpg"];
+            $scope.number_rand = Math.floor(Math.random() * $scope.imagens.length);
+            $scope.img_rand_link = "../static/img/avatar/large/" + $scope.imagens[$scope.number_rand];
+            $scope.already_called = true;
+        }
     };
+
 
     $scope.initSelectedBrand = function (produto) {
         produto.selected_brand = produto.brands[0];
@@ -80,6 +87,11 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
         $scope.temp = l.produtos;
         $scope.consultaptotal = lt;
         $scope.consultaptotal = parseFloat(Math.round($scope.consultaptotal * 100) / 100).toFixed(2);
+    };
+
+    $scope.enviarDadosModal = function (l) {
+        console.log(l);
+        $scope.listas_usuario_temp = l;
     };
 
     $scope.removerLista = function (lista, index) {
@@ -252,8 +264,8 @@ angular.module("projetolistacompras").directive('decimalNumber', function () {
                 var index_dot,
                     arr = val.split("");
                 if (arr.length === 0) return;
-                if (arr.length === 1 && (arr[0] == '-' || arr[0] === '.')) return;
-                if (arr.length === 2 && val === '-.') return;
+                //if (arr.length === 1 && (arr[0] == '-' || arr[0] === '.')) return;
+                //if (arr.length === 2 && val === '-.') return;
                 if (isNaN(val) || ((index_dot = val.indexOf('.')) != -1 && val.length - index_dot > 3 )) {
                     scope.inputValue = oldValue;
                 } else if (refresh) {
