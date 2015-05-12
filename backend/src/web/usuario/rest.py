@@ -20,7 +20,7 @@ def salvar(_resp, nome, marca):
 
 
 def salvar_lista(_resp, _usuario_logado, lista):
-    list_to_save = Lista(localcompra=lista["localcompra"], total=lista["total"])
+    list_to_save = Lista(localcompra=lista["localcompra"], total=lista["total"], nome=lista["nome"], tipo=lista["tipo"])
     d = datetime.today()
     a = d.year
     m = datetime.strftime(datetime.now(), '%b')

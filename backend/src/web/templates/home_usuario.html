@@ -152,7 +152,26 @@
                 <h4 class="modal-title">Quase lá...</h4>
             </div>
             <div class="modal-body">
-                <p>Olá, {{ _usuario_logado.firstname }} que tal dar aquela última verificada? :)</p> <br/>
+                <!--<p>Olá, {{ _usuario_logado.firstname }} que tal dar aquela última verificada? :)</p> <br/>-->
+                <p>Que tal dar aquela última verificada? :)</p> <br/>
+
+
+                <form role="form">
+                    <div class="form-group">
+                        <label>Nome da Lista:</label>
+                        <input ng-model="nome_templista" class="form-control" title="Nome da Lista">
+
+                        <p>
+                            <small><b>DICA: </b>Este campo não é obrigatório, portanto não tem problema deixá-lo em
+                                branco
+                                (sua lista será identificada pela Data em que fora criada).
+                            </small>
+                        </p>
+                    </div>
+                </form>
+
+                <br/>
+                <label>Itens na Lista:</label>
 
                 <div class="table-responsive">
                     <table class="table table-condensed table-hover">
@@ -175,9 +194,43 @@
                     </table>
                 </div>
                 <p><strong>Preço Total:</strong> R$ {_ precototal _}</p>
-                <br/>
 
-                <p>Se tudo estiver ok, aperte confirmar!</p>
+                <br/>
+                <label>Selecione o tipo da Lista: </label>
+
+                <form role="form">
+                    <div class="radio">
+                        <label><input ng-model="tipotemplista" type="radio" name="tipotemplista">Padrão
+                            {_tipotemplista_}</label>
+                    </div>
+                    <div class="radio">
+                        <label><input ng-model="tipotemplista2" type="radio" name="tipotemplista">Rotina
+                            {_tipotemplista2_}</label>
+                    </div>
+                </form>
+
+                <!--
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-info active">
+                        <input ng-model="tipo_templista" type="radio" name="custom"
+                               autocomplete="off" value="custom" checked>
+                        Padrão {_tipo_templista_}
+                    </label>
+                    <label class="btn btn-info">
+                        <input ng-model="tipo_templista2" type="radio" name="routine"
+                               autocomplete="off" value="routine">
+                        Rotina {_tipo_templista2_}
+                    </label>
+                    <!--<label class="btn btn-primary">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+                    </label>->
+                </div>-->
+                <p>
+                    <small><b>DICA: </b> A lista <i>Padrão</i> é removida com o passar do tempo, já a do tipo
+                        <i>Rotina</i> ficará sempre disponível para novas consultas de preços.
+                    </small>
+                </p>
+                <p><br/>Se tudo estiver ok, aperte confirmar!</p>
             </div>
             <div class="modal-footer">
                 <button type="button" ng-click="salvarLista()" data-dismiss="modal" data-toggle="modal"

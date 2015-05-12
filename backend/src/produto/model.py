@@ -55,6 +55,7 @@ class Lista(ndb.Model):
     localcompra = ndb.StringProperty()
     datacompra = ndb.DateProperty(auto_now=True, auto_now_add=True)
     total = ndb.FloatProperty(required=True)
+    tipo = ndb.StringProperty()
 
     def to_dict(self):
         return {
@@ -63,6 +64,7 @@ class Lista(ndb.Model):
             "localcompra": self.localcompra,
             "datacompra": self.datacompra.strftime("%Y-%b-%d"),
             "total": self.total,
+            "tipo": self.tipo,
             "id": self.key.id()
         }
 

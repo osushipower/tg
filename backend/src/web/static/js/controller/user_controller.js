@@ -37,13 +37,11 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     });
 
     $scope.img_rand_link = "";
-
     $scope.listatemp = [];
-
     $scope.search = "";
     $scope.precototal = 0;
     $scope.consultaptotal = 0;
-
+    $scope.nome_templista = "";
 
     $scope.img_gera_rand = function () {
         if ($scope.already_called == false) {
@@ -160,8 +158,17 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
             data["produtos"][i]["quant"] = $scope.listatemp[i]["quant"];
             data["produtos"][i]["preco"] = $scope.listatemp[i]["preco"];
         }
+        data["nome"] = $scope.nome_templista;
         data["total"] = parseFloat($scope.precototal);
         data["localcompra"] = $scope.local_compra;
+        /*
+        if ($scope.tipo_templista == true) {
+            data["tipo"] = "custom";
+        } else {
+            data["tipo"] = "routine";
+        }*/
+        console.log($scope.nome_templista);
+        //console.log($scope.tipo_templista);
 
 
         $http.post("/usuario/rest/salvar_lista", {lista: data});
@@ -304,3 +311,5 @@ angular.module("projetolistacompras").directive('validNumber', function () {
         }
     };
 });
+
+$('#nomedalista').tooltip({'trigger':'focus', 'title': 'Nome da Lista'});
