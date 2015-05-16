@@ -8,6 +8,59 @@
             {% if _usuario_logado %}
             <h2>Perfil:</h2>
             <br/>
+
+            <accordion close-others="oneAtATime">
+                <accordion-group heading="Dados Pessoais" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                    <p>
+                        <strong>Nickname:</strong> {{ _usuario_logado.firstname }} <br/>
+                        <strong>Cidade:</strong> {{ _usuario_logado.city }} <br/>
+                        <strong>Email:</strong> {{ _usuario_logado.email }}
+                    </p>
+                </accordion-group>
+                <accordion-group is-open="status.open">
+                    <accordion-heading>
+                        Minhas Listas <i class="pull-right glyphicon"
+                                         ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                    </accordion-heading>
+                    <div class="table-responsive" style="height: 200px !important; overflow: scroll;">
+                        <table class="table table-condensed table-hover">
+                            <thead>
+                            <tr>
+                                <th>Visualizar</th>
+                                <th>Lista</th>
+                                <th>Data</th>
+                                <th>Local</th>
+                                <th>Autor</th>
+                                <th>Deletar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="lista in listas_user.listas">
+                                <td>
+                                    <button class="btn btn-info" ng-click="visualizarLista(lista, lista.total)"
+                                            data-toggle="modal"
+                                            data-target="#mVerificar">
+                                        <span class="glyphicon glyphicon-eye-open"></span></button>
+                                </td>
+                                <td>{_lista.nome_}</td>
+                                <td>{_lista.datacompra_}</td>
+                                <td>{_lista.localcompra_}</td>
+                                <td>{_listas_user.autor_}</td>
+                                <td>
+                                    <button class="btn btn-danger" data-toggle="modal"
+                                            ng-click="removerLista(lista, $index)"
+                                            data-target="#mDeletar"><span
+                                            class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </accordion-group>
+            </accordion>
+
+            <!--
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
@@ -80,9 +133,8 @@
                     </div>
                 </div>
             </div>
-            <br />
-
-
+            -->
+            <br/>
             {% else %}
             <div class="alert alert-warning alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span

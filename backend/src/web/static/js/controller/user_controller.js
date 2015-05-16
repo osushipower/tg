@@ -42,6 +42,12 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     $scope.precototal = 0;
     $scope.consultaptotal = 0;
     $scope.nome_templista = "";
+    $scope.radioModel = 'Custom';
+    $scope.oneAtATime = true;
+    $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 
     $scope.img_gera_rand = function () {
         if ($scope.already_called == false) {
@@ -52,7 +58,6 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
             $scope.already_called = true;
         }
     };
-
 
     $scope.initSelectedBrand = function (produto) {
         produto.selected_brand = produto.brands[0];
@@ -88,7 +93,7 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     };
 
     $scope.enviarDadosModal = function (l) {
-        console.log(l);
+        //console.log(l);
         $scope.listas_usuario_temp = l;
     };
 
@@ -146,10 +151,30 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     };
 
     $scope.salvarLista = function () {
+
+        //$scope.printa_var_input($scope.nome_templista);
+
         var data = {};
         var preco_total = 0.0;
         data["produtos"] = [];
         var length = $scope.listatemp.length;
+
+        var date = new Date();
+        console.log(date);
+
+        var seconds = date.getSeconds();
+        console.log(seconds);
+        var minutes = date.getMinutes();
+        console.log(minutes);
+        var hour = date.getHours();
+        console.log(hour);
+
+        var year = date.getFullYear();
+        console.log(year);
+        var month = $scope.ordem_ano[date.getMonth()]; // beware: January = 0; February = 1, etc.
+        console.log(month);
+        var day = date.getDate();
+        console.log(day);
 
         for (var i = 0; i < length; i++) {
             data["produtos"][i] = {};
@@ -158,18 +183,16 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
             data["produtos"][i]["quant"] = $scope.listatemp[i]["quant"];
             data["produtos"][i]["preco"] = $scope.listatemp[i]["preco"];
         }
-        data["nome"] = $scope.nome_templista;
-        data["total"] = parseFloat($scope.precototal);
-        data["localcompra"] = $scope.local_compra;
-        /*
-        if ($scope.tipo_templista == true) {
-            data["tipo"] = "custom";
+        if ($scope.nome_templista == "" || $scope.nome_templista == null) {
+            var data_temp = "" + year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+            console.log(data_temp);
+            data["nome"] = data_temp;
         } else {
-            data["tipo"] = "routine";
-        }*/
-        console.log($scope.nome_templista);
-        //console.log($scope.tipo_templista);
-
+            data["nome"] = $scope.nome_templista;
+        }
+        data["localcompra"] = $scope.local_compra;
+        data["total"] = parseFloat($scope.precototal);
+        data["tipo"] = $scope.radioModel;
 
         $http.post("/usuario/rest/salvar_lista", {lista: data});
     };
@@ -312,4 +335,5 @@ angular.module("projetolistacompras").directive('validNumber', function () {
     };
 });
 
-$('#nomedalista').tooltip({'trigger':'focus', 'title': 'Nome da Lista'});
+
+$('#nomedalista').tooltip();

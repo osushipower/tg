@@ -5,8 +5,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 column" style="background-color: #ffffff">
-            <br/>
 
+            <br/>
             <form role="form">
                 <div class="form-group">
                     <input id="inputSearch" class="form-control" ng-model="search" title="Busca Produto"
@@ -159,7 +159,7 @@
                 <form role="form">
                     <div class="form-group">
                         <label>Nome da Lista:</label>
-                        <input ng-model="nome_templista" class="form-control" title="Nome da Lista">
+                        <input id="nomedalista" ng-model="nome_templista" class="form-control" title="Nome da Lista">
 
                         <p>
                             <small><b>DICA: </b>Este campo não é obrigatório, portanto não tem problema deixá-lo em
@@ -197,37 +197,15 @@
 
                 <br/>
                 <label>Selecione o tipo da Lista: </label>
-
-                <form role="form">
-                    <div class="radio">
-                        <label><input ng-model="tipotemplista" type="radio" name="tipotemplista">Padrão
-                            {_tipotemplista_}</label>
-                    </div>
-                    <div class="radio">
-                        <label><input ng-model="tipotemplista2" type="radio" name="tipotemplista">Rotina
-                            {_tipotemplista2_}</label>
-                    </div>
-                </form>
-
-                <!--
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-info active">
-                        <input ng-model="tipo_templista" type="radio" name="custom"
-                               autocomplete="off" value="custom" checked>
-                        Padrão {_tipo_templista_}
-                    </label>
-                    <label class="btn btn-info">
-                        <input ng-model="tipo_templista2" type="radio" name="routine"
-                               autocomplete="off" value="routine">
-                        Rotina {_tipo_templista2_}
-                    </label>
-                    <!--<label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
-                    </label>->
-                </div>-->
+                <!-- <pre>{_radioModel || 'null'_}</pre> -->
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Custom'" uncheckable>Padrão</label>
+                    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Routine'" uncheckable>Rotina</label>
+                </div>
                 <p>
-                    <small><b>DICA: </b> A lista <i>Padrão</i> é removida com o passar do tempo, já a do tipo
-                        <i>Rotina</i> ficará sempre disponível para novas consultas de preços.
+                    <small><b>DICA:</b> A lista <i>Padrão</i> é aquela compra ocasional e é removida com o passar do
+                        tempo. Já a do tipo <i>Rotina</i> é aquela compra fundamental para sua casa, quase sempre
+                        com os mesmos produtos e ficará sempre disponível para novas consultas de preços.
                     </small>
                 </p>
                 <p><br/>Se tudo estiver ok, aperte confirmar!</p>
