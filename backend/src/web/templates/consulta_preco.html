@@ -87,7 +87,7 @@
                                             <tr ng-repeat="lista in listas_user.listas">
                                                 <td>
                                                     <button class="btn btn-info"
-                                                            ng-click="init_estab_check()">
+                                                            ng-click="activate_check_price(); visualizarLista(lista, lista.total)">
                                                         <span class="glyphicon glyphicon-search"></span></button>
                                                 </td>
                                                 <td>{_lista.nome_}</td>
@@ -104,16 +104,59 @@
                                     <div class="panel with-nav-tabs panel-default">
                                         <div class="panel-heading">
                                             <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab1" data-toggle="tab">Lista Atual</a></li>
-                                                <li  ng-repeat="i in estabelecimentos">
-                                                    <a href="#tab1" data-toggle="tab">{_i.nome_}</a>
+                                                <li class="active"><a href="#tab" data-toggle="tab">Lista Atual</a></li>
+                                                <li ng-repeat="i in estabelecimentos">
+                                                    <a href="#tab{_$index_}" data-toggle="tab">{_i.nome_}</a>
                                                 </li>
                                                 <!--<li><a href="#tab3default" data-toggle="tab">Default 3</a></li>-->
                                             </ul>
                                         </div>
                                         <div class="panel-body">
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade in active" id="tab1">
+                                            <div class="tab-content" ng-show="check_list_price">
+                                                <div class="tab-pane fade in active" id="tab">
+                                                    <div class="table-responsive"
+                                                         style="height: 200px !important; overflow: scroll;">
+                                                        <table class="table table-condensed table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Produto:</th>
+                                                                <th>Quantidade:</th>
+                                                                <th>Preço(un):</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr ng-repeat="t in temp track by $index">
+                                                                <td>{_ t.nome _}</td>
+                                                                <td>{_ t.quantidade _}</td>
+                                                                <td>R$ {_ t.preco _}</td>
+                                                            </tr>
+                                                            <label>Preço Total: </label>
+                                                            <pre>R$ {_consultaptotal_}</pre>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" ng-repeat="i in estabelecimentos"
+                                                     id="tab{_$index_}">
+                                                    <div class="table-responsive"
+                                                         style="height: 200px !important; overflow: scroll;">
+                                                        <table class="table table-condensed table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Produto:</th>
+                                                                <th>Preço(un):</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>#</td>
+                                                                <td>#</td>
+                                                            </tr>
+                                                            <label>Preço Total: </label>
+                                                            <pre>R$ {_consultaptotal_}</pre>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -124,8 +167,8 @@
                         </div>
                     </div>
                 </div>
-                <br/>
             </div>
+            <br/>
         </div>
     </div>
 </div>

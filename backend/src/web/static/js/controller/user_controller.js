@@ -48,6 +48,12 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
         isFirstOpen: true,
         isFirstDisabled: false
     };
+    $scope.check_list_price = false;
+
+    $scope.activate_check_price = function () {
+        $scope.check_list_price = false;
+        $scope.check_list_price = true;
+    };
 
     $scope.img_gera_rand = function () {
         if ($scope.already_called == false) {
