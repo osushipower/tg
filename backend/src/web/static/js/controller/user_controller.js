@@ -50,11 +50,6 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
     };
     $scope.check_list_price = false;
 
-    $scope.activate_check_price = function () {
-        $scope.check_list_price = false;
-        $scope.check_list_price = true;
-    };
-
     $scope.img_gera_rand = function () {
         if ($scope.already_called == false) {
             $scope.imagens = ["christian.jpg", "elliot.jpg", "helen.jpg", "jenny.jpg", "justen.jpg",
@@ -221,6 +216,66 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
         });
     };
 
+    $scope.dadosrecebidos = [];
+    $scope.enviarDados = function (l) {
+        $scope.check_list_price = false;
+        $http.post("/usuario/rest/buscar_listas_recentes", {'produtos': l}).success(function (json) {
+            $scope.dadosrecebidos = json || [];
+            $scope.receberdados($scope.dadosrecebidos);
+        });
+        $scope.check_list_price = true;
+
+    };
+
+    $scope.dadosrefatorados = [];
+    $scope.receberdados = function (l) {
+        for (var i in l) {
+            //console.log(i); // i = nome dos estabelecimentos
+            for (var j in l[i]) {
+                var a = l[i][j];
+                //console.log(a);
+                for (var k in a) {
+                    if (a[k] == 0) {
+                        a[k] = "--";
+                    } else {
+                        a[k] = parseFloat(Math.round(a[k] * 100) / 100).toFixed(2);
+                    }
+                    //console.log(a[k]);
+                }
+            }
+        }
+    };
+
+    $scope.dados_para_consulta = [];
+    $scope.preco_total_consulta = 0;
+    $scope.executarConsulta = function (e) {
+        $scope.preco_total_consulta = 0;
+        $scope.dados_para_consulta = [];
+        //console.log(e);
+
+        for (var i in $scope.dadosrecebidos) {
+            if (i == e) {
+                //console.log(i);
+                for (var j in $scope.dadosrecebidos[i]) {
+                    var a = $scope.dadosrecebidos[i][j];
+                    //console.log($scope.dadosrecebidos[i][j]);
+                    $scope.dados_para_consulta.push(a);
+                    //console.log($scope.dados_para_consulta);
+                    for (var k in a) {
+                        var value_check = 0;
+                        value_check = parseFloat(Math.round(a[k] * 100) / 100);
+                        if (!isNaN(value_check)) {
+                            //console.log(value_check);
+                            $scope.preco_total_consulta = parseFloat(Math.round($scope.preco_total_consulta * 100) / 100) + value_check;
+                        }
+                        //$scope.dados_para_consulta.push(k);
+                    }
+                }
+            }
+        }
+        $scope.preco_total_consulta.toFixed(2);
+    };
+
     $scope.lista_precos = [];
     $scope.ordenar_precos_estab = function (p) {
         $scope.lista_precos = [];
@@ -343,3 +398,4 @@ angular.module("projetolistacompras").directive('validNumber', function () {
 
 
 $('#nomedalista').tooltip();
+

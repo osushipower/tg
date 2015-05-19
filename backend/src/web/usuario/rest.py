@@ -114,8 +114,46 @@ def buscar_produtos_recentes(_resp, nome_produto):
             produto_procurado = filter(lambda produto: produto.nome == nome_produto, produtos)
             if produto_procurado:
                 if result[estabelecimento.nome]:
-                    if produto_procurado[0].preco < result[estabelecimento.nome][produto_procurado[0].nome]:
+                    if produto_procurado[0].preco < result[estabelecimento.nome]:
                         result[estabelecimento.nome] = produto_procurado[0].preco
                 else:
                     result[estabelecimento.nome] = produto_procurado[0].preco
     _resp.write(json.dumps(result))
+
+
+def buscar_listas_recentes(_resp, produtos):
+    estabelecimentos = Estabelecimento.query().fetch()
+    lista_final = {}
+    result = {}
+    list_prod = []
+    for a in produtos:
+        list_prod.append(a['nome'])
+
+    for estabelecimento in estabelecimentos:
+        lista_final[estabelecimento.nome] = []
+        #print estabelecimento.nome
+        for dic in list_prod:
+            #print dic
+            result[dic] = 0
+            listas_por_estabelecimento = Lista.query(Lista.localcompra == estabelecimento.nome).fetch()
+            dia_atual = datetime.now().timetuple().tm_yday
+            listas_da_ultima_semana = filter(lambda lista: lista.datacompra.timetuple().tm_yday >= (dia_atual - 7) and \
+                                                           lista.datacompra.timetuple().tm_yday <= dia_atual,
+                                             listas_por_estabelecimento)
+            for lista in listas_da_ultima_semana:
+                produtos = ndb.get_multi(lista.produtos)
+                #print produtos
+                produto_procurado = filter(lambda produto: produto.nome == dic, produtos)
+                #print "Quero ", produto_procurado
+                if produto_procurado:
+                    if result[dic]:
+                        if produto_procurado[0].preco < result[dic]:
+                            result[dic] = produto_procurado[0].preco
+                    else:
+                        result[dic] = produto_procurado[0].preco
+            lista_final[estabelecimento.nome].append({dic: result[dic]})
+    #print lista_final
+    _resp.write(json.dumps(lista_final))
+
+
+# if produto_procurado[0].preco < result[estabelecimento.nome][produto_procurado[0].nome]:

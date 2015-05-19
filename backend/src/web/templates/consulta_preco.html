@@ -80,20 +80,21 @@
                                                 <th>Nome</th>
                                                 <th>Data</th>
                                                 <th>Local</th>
-                                                <th>Autor</th>
+                                                <th>Valor Total</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <tr ng-repeat="lista in listas_user.listas">
                                                 <td>
-                                                    <button class="btn btn-info"
-                                                            ng-click="activate_check_price(); visualizarLista(lista, lista.total)">
+                                                    <button id="togglebutton" class="btn btn-info"
+                                                            ng-click="visualizarLista(lista, lista.total);
+                                                            enviarDados(lista.produtos)">
                                                         <span class="glyphicon glyphicon-search"></span></button>
                                                 </td>
                                                 <td>{_lista.nome_}</td>
                                                 <td>{_lista.datacompra_}</td>
                                                 <td>{_lista.localcompra_}</td>
-                                                <td>{_listas_user.autor_}</td>
+                                                <td>R$ {_lista.total_}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -104,9 +105,10 @@
                                     <div class="panel with-nav-tabs panel-default" ng-show="check_list_price">
                                         <div class="panel-heading">
                                             <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tab" data-toggle="tab">Lista Atual</a></li>
+                                                <li id="lip"><a href="#tab" data-toggle="tab">Lista Atual</a></li>
                                                 <li ng-repeat="i in estabelecimentos">
-                                                    <a href="#tab{_$index_}" data-toggle="tab">{_i.nome_}</a>
+                                                    <a href="#tab{_$index_}" ng-click="executarConsulta(i.nome)"
+                                                       data-toggle="tab">{_i.nome_}</a>
                                                 </li>
                                                 <!--<li><a href="#tab3default" data-toggle="tab">Default 3</a></li>-->
                                             </ul>
@@ -130,10 +132,10 @@
                                                                 <td>{_ t.quantidade _}</td>
                                                                 <td>R$ {_ t.preco _}</td>
                                                             </tr>
-                                                            <label>Preço Total: </label>
-                                                            <pre>R$ {_consultaptotal_}</pre>
                                                             </tbody>
                                                         </table>
+                                                        <label>Preço Total: </label>
+                                                        <pre>R$ {_consultaptotal_}</pre>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" ng-repeat="i in estabelecimentos"
@@ -148,14 +150,14 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr>
-                                                                <td>#</td>
-                                                                <td>#</td>
+                                                            <tr ng-repeat="j in dados_para_consulta">
+                                                                <td ng-repeat="(key, value) in j">{_key_}</td>
+                                                                <td ng-repeat="(key, value) in j">R$ {_value_}</td>
                                                             </tr>
-                                                            <label>Preço Total: </label>
-                                                            <pre>R$ #</pre>
                                                             </tbody>
                                                         </table>
+                                                        <label>Preço Total: </label>
+                                                        <pre>R$ {_preco_total_consulta_}</pre>
                                                     </div>
                                                 </div>
                                             </div>
