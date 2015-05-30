@@ -4,6 +4,7 @@ from __future__ import absolute_import, unicode_literals
 import json
 import datetime
 from google.appengine.ext import ndb
+from datetime import date
 
 
 class Product(ndb.Model):
@@ -15,8 +16,9 @@ class Product(ndb.Model):
 
     def to_dict(self):
         dic = super(Product, self).to_dict()
-        dic["preco"] = " %4.2f" %self.preco
+        dic["preco"] = " %4.2f" % self.preco
         return dic
+
 
 class SystemProduct(ndb.Model):
     brands = ndb.StringProperty(repeated=True)
@@ -24,7 +26,7 @@ class SystemProduct(ndb.Model):
     @classmethod
     def create_system_product(cls, id, brand=None):
 
-        #import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         def _set_brands(s_product, brand):
             if brand is not None:
                 if brand not in s_product.brands:
@@ -47,6 +49,7 @@ class SystemProduct(ndb.Model):
 
     def create_product(self, **kwargs):
         return Product(nome=self.key.id(), **kwargs).put()
+
 
 
 class Lista(ndb.Model):

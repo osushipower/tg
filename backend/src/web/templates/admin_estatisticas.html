@@ -7,14 +7,166 @@
         <div class="col-md-12 column" style="background-color: #ffffff">
             <br/>
 
-            <h3>Estatísticas:</h3>
-            <br/>
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1default" data-toggle="tab">Informações Gerais</a></li>
+                        <li><a href="#tab2default" data-toggle="tab">Listas</a></li>
+                        <li><a href="#tab3default" data-toggle="tab">Produtos</a></li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="tab1default">
+                            <div class="row">
+                                <div class="col-md-6 column">
+                                    <h2 style="color: #0092c9">Olá Administrador,</h2>
+                                    <p><small>Aqui se encontram as informações gerais do sistema</small></p>
+                                    <br/>
+                                    <p>Hoje, dia <strong style="color: #0092c9">{_estatisticas_gerais.dia_atual_}</strong>, foram
+                                    cadastradas <strong style="color: #0092c9">{_estatisticas_gerais.num_listas_dia_}</strong> lista(s) no sistema.</p>
+                                    <br/>
+                                    <p>A última lista, de nome <strong style="color: #0092c9">{_estatisticas_gerais.ult_lista_}</strong>,
+                                    foi cadastrada pelo usuário <strong style="color: #0092c9">{_estatisticas_gerais.ult_usuario_}</strong>
+                                        às <strong style="color: #0092c9">{_estatisticas_gerais.ult_lista_hora_}</strong>.</p>
+                                    <br/>
+                                    <div ng-show="prod_add_verifiy">
+                                        <p><strong>Os três produtos mais comprados são: </strong></p><br/>
+                                        <p ng-repeat="(key, value) in lista_Produtos_Mais_add[0]">
+                                            <strong style="color: #0092c9">{_key_}</strong>: adicionado
+                                            <strong style="color: #0092c9">{_value_} vez(es)</strong>
+                                        </p>
+                                        <p ng-repeat="(key, value) in lista_Produtos_Mais_add[1]">
+                                            <strong style="color: #0092c9">{_key_}</strong>: adicionado
+                                            <strong style="color: #0092c9">{_value_} vez(es)</strong>
+                                        </p>
+                                        <p ng-repeat="(key, value) in lista_Produtos_Mais_add[2]">
+                                            <strong style="color: #0092c9">{_key_}</strong>: adicionado
+                                            <strong style="color: #0092c9">{_value_} vez(es)</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 column">
+                                    <h4><strong>LOGS DO SISTEMA:</strong></h4>
+                                    <p><small>Últimas listas cadastradas no sistema</small></p>
 
-            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                    <div  style="height: 300px !important; overflow: scroll;">
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Nome da Lista:</th>
+                                                <th>Local:</th>
+                                                <th>Valor Total:</th>
+                                                <th>Criada por:</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="l in temp_log_listas">
+                                                <td ng-repeat="item in l">{_ item.lista_nome _}</td>
+                                                <td ng-repeat="item in l">{_ item.lista_local _}</td>
+                                                <td ng-repeat="item in l">R$ {_ item.lista_total _}</td>
+                                                <td ng-repeat="item in l">{_ item.lista_username _}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab2default">
+                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
 
+                        <div class="tab-pane fade" id="tab3default">
 
+                            <form role="form">
+                                <div class="form-group">
+                                    <input id="inputSearch" class="form-control" ng-model="search" title="Busca Produto"
+                                           placeholder="Digite aqui o produto que você quer consultar o preço :)">
+                                </div>
+                            </form>
+
+                            <div class="row">
+                                <div class="col-md-6 column">
+
+                                    <h3>Consultar Inserções: </h3>
+
+                                    <div ng-show="search.length >= 1"
+                                         style="height: 300px !important; overflow: scroll;">
+                                        <table class="table table-condensed table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Nome Produto</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="p in produtos_sistema | filter: search track by $id(p)">
+                                                <td class="filterable-cell">{_ p.id _}</td>
+                                                <td class="filterable-cell">
+                                                    <button class="btn btn-info" title="Adicionar"
+                                                            ng-click="busca_qtd_insert(p.id); limparBusca()">
+                                                        <span class="glyphicon glyphicon-search"></span>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 column">
+                                    <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!--<form role="form">
+                               <div class="form-group">
+                                   <input id="inputSearch" class="form-control" ng-model="search" title="Busca Produto"
+                                          placeholder="Digite aqui o produto para consulta">
+                               </div>
+                           </form>
+
+                           <div class="row">
+                               <div class="col-md-6 column">
+
+                                   <h3>Consultar Preços: </h3>
+
+                                   <div ng-show="search.length >= 1"
+                                        style="height: 300px !important; overflow: scroll;">
+                                       <table class="table table-condensed table-hover">
+                                           <thead>
+                                           <tr>
+                                               <th>Nome Produto</th>
+                                               <th></th>
+                                           </tr>
+                                           </thead>
+                                           <tbody>
+                                           <tr ng-repeat="p in produtos_sistema | filter: search track by $id(p)">
+                                               <td class="filterable-cell">{_ p.id _}</td>
+                                               <td class="filterable-cell">
+                                                   <button class="btn btn-info" title="Adicionar"
+                                                           ng-click="busca_preco_prod(p.id); limparBusca()">
+                                                       <span class="glyphicon glyphicon-search"></span>
+                                                   </button>
+                                               </td>
+                                           </tr>
+                                           </tbody>
+                                       </table>
+                                       <br/>
+                                   </div>
+                               </div>
+
+                               <div class="col-md-6 column">
+                                   <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                               </div>
+                           </div>-->
 
 {% endblock %}

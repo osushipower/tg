@@ -1,10 +1,10 @@
 # coding: utf-8
-
 from __future__ import absolute_import, unicode_literals
 import json
 from produto.model import Product, Lista, SystemProduct
 from usuario.model import Usuario
 from estabelecimento.model import Estabelecimento
+from estatistica.model import Estatistica
 from google.appengine.ext import ndb
 from datetime import datetime
 
@@ -24,9 +24,15 @@ def salvar_lista(_resp, _usuario_logado, lista):
     d = datetime.today()
     a = d.year
     m = datetime.strftime(datetime.now(), '%b')
+    dia = int(datetime.strftime(datetime.now(), '%d'))
+    #print dia
+
+    e = Estatistica.find_by_identifier("statistics")
 
     for produto in lista["produtos"]:
         s_prod = SystemProduct.get_by_id(produto["id"])
+        s_prod.put()
+        e.adicionar_prod_estatistica(produto["id"])
         product = s_prod.create_product().get()
         product.marca = produto["brand"]
         product.quantidade = int(produto["quant"])
@@ -37,6 +43,29 @@ def salvar_lista(_resp, _usuario_logado, lista):
     for estab in Estabelecimento.query(Estabelecimento.nome == lista["localcompra"]).fetch():
         estab.check_year_existence(a, m)
         estab.put()
+
+    e.ult_lista = lista["nome"]
+    e.ult_usuario = _usuario_logado.firstname
+    e.ult_lista_hora = datetime.now().strftime('%H:%M:%S')
+    if e.dia_atual != dia:
+        e.dia_atual = dia
+        e.num_listas_dia = 1
+    else:
+        e.num_listas_dia = e.num_listas_dia + 1
+
+    if not e.num_listas_total:
+        e.num_listas_total = 1
+    else:
+        e.num_listas_total = e.num_listas_total + 1
+
+    if not e.log_listas:
+        e.log_listas = []
+        e.log_listas.append([{'lista_nome': lista["nome"], 'lista_local':lista["localcompra"],
+                             'lista_total': lista["total"], 'lista_username':_usuario_logado.firstname}])
+    else:
+        e.log_listas.append([{'lista_nome': lista["nome"], 'lista_local':lista["localcompra"],
+                             'lista_total': lista["total"], 'lista_username':_usuario_logado.firstname}])
+    e.put()
 
     list_to_save.put()
     _usuario_logado.listas.append(list_to_save.key)

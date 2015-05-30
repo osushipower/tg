@@ -4,7 +4,6 @@ import json
 from google.appengine.ext import ndb
 from datetime import date
 
-
 class Estabelecimento(ndb.Model):
 
     nome = ndb.StringProperty()

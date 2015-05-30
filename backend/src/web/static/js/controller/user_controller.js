@@ -161,21 +161,21 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
         var length = $scope.listatemp.length;
 
         var date = new Date();
-        console.log(date);
+        //console.log(date);
 
         var seconds = date.getSeconds();
-        console.log(seconds);
+        //console.log(seconds);
         var minutes = date.getMinutes();
-        console.log(minutes);
+        //console.log(minutes);
         var hour = date.getHours();
-        console.log(hour);
+        //console.log(hour);
 
         var year = date.getFullYear();
-        console.log(year);
+        //console.log(year);
         var month = $scope.ordem_ano[date.getMonth()]; // beware: January = 0; February = 1, etc.
-        console.log(month);
+        //console.log(month);
         var day = date.getDate();
-        console.log(day);
+        //console.log(day);
 
         for (var i = 0; i < length; i++) {
             data["produtos"][i] = {};
@@ -186,7 +186,7 @@ angular.module("projetolistacompras").controller("UserController", function ($sc
         }
         if ($scope.nome_templista == "" || $scope.nome_templista == null) {
             var data_temp = "" + year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
-            console.log(data_temp);
+            //console.log(data_temp);
             data["nome"] = data_temp;
         } else {
             data["nome"] = $scope.nome_templista;
