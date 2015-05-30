@@ -70,13 +70,16 @@
 
                             <div class="row">
                                 <div class="col-md-6 column">
-
+                                    <p><small>Quer consultar os preços mais
+                                    baratos disponíveis nos mercados? É simples!
+                                    Basta escolher uma das suas listas
+                                    e clicar no botão de 'Consultar'.</small></p>
 
                                     <div class="table-responsive" style="height: 300px !important; overflow: scroll;">
                                         <table class="table table-hover">
                                             <thead>
                                             <tr>
-                                                <th>Visualizar</th>
+                                                <th>Consultar</th>
                                                 <th>Nome</th>
                                                 <th>Data</th>
                                                 <th>Local</th>
@@ -140,7 +143,9 @@
                                                         <p style="display: inline">R$ </p>
 
                                                         <p style="display: inline; font-size: 200%">
-                                                            <strong>{_preco_total_consulta_}</strong></p>
+                                                            <strong>{_consultaptotal_}</strong></p>
+                                                        <p><small>* O preço total calculado considera
+                                                        apenas uma unidade por produto</small></p>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" ng-repeat="i in estabelecimentos"
@@ -168,7 +173,8 @@
 
                                                         <p style="display: inline; color: #32cd32; font-size: 200%">
                                                             <strong>{_preco_total_consulta_}</strong></p>
-                                                        </p>
+                                                        <p><small>* O preço total calculado considera
+                                                        apenas uma unidade por produto</small></p>
                                                     </div>
                                                 </div>
                                             </div>
