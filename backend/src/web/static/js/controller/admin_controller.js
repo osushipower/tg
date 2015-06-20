@@ -39,8 +39,27 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
         $scope.organizar_Prod_Mais_Add();
     });
 
+    $scope.is_selected = false;
+    $("#nameClear").prop('disabled', false);
+    $scope.selecionarProduto = function (nomeprodbtn) {
+        if ($scope.is_selected == true) {
+            if ($scope.inputNome != nomeprodbtn) {
+                $scope.inputNome = nomeprodbtn;
+                $("#nameClear").prop('disabled', true);
+            } else {
+                $scope.is_selected = false;
+                $("#nameClear").prop('disabled', false);
+                $scope.inputNome = "";
+            }
+        } else {
+            $scope.is_selected = true;
+            $scope.inputNome = nomeprodbtn;
+            $("#nameClear").prop('disabled', true);
+        }
+    };
+
     $scope.lista_Produtos_Mais_add = [];
-    $scope.organizar_Prod_Mais_Add = function() {
+    $scope.organizar_Prod_Mais_Add = function () {
         //$scope.lista_Produtos_Mais_add[0] = 0;
         //$scope.lista_Produtos_Mais_add[1] = 0;
         //$scope.lista_Produtos_Mais_add[2] = 0;
@@ -146,6 +165,10 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
         $http.post('/admin/rest/removerProdutoSistema',
             {"name": produto.id}
         );
+
+        $("#nameClear").prop('disabled', false);
+        $scope.inputNome = "";
+
     };
 
     $scope.cadastrarEstabelecimento = function () {
@@ -194,8 +217,12 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
     };
 
     $scope.limparProd = function () {
-        document.getElementById("nameClear").value = "";
-        document.getElementById("brandClear").value = "";
+        if ($scope.is_selected == true) {
+            document.getElementById("brandClear").value = "";
+        } else {
+            document.getElementById("nameClear").value = "";
+            document.getElementById("brandClear").value = "";
+        }
     };
 
 
@@ -254,13 +281,13 @@ angular.module("projetolistacompras").controller("AdminController", function ($s
         return $scope.lista_qtd
     };
 
-     $scope.$watch('is_ready_prod', function () {
+    $scope.$watch('is_ready_prod', function () {
         if ($scope.is_ready_prod === true) {
             $scope.init_chart_prod();
         }
     });
 
-     $scope.init_chart_prod = function () {
+    $scope.init_chart_prod = function () {
         $('#container2').highcharts({
             chart: {
                 type: 'column'

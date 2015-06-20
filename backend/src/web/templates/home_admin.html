@@ -12,6 +12,7 @@
                             <table class="table table-condensed table-hover">
                                 <thead>
                                 <tr>
+                                    <th>Selecionar</th>
                                     <th>Nome Produto</th>
                                     <th> Marcas</th>
                                     <th></th>
@@ -19,6 +20,12 @@
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="p in produtos_sistema track by $index | filter: search">
+                                    <td>
+                                        <button class="btn btn-info"
+                                                ng-click="selecionarProduto(p.id)">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                        </button>
+                                    </td>
                                     <td class="filterable-cell">{_ p.id _}</td>
                                     <td class="dropdown">
                                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
